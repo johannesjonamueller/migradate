@@ -14,8 +14,8 @@ const MigraDate = () => {
   // Define all the profiles with multiple images
   const profiles = [
     {
-      name: "Aging Workforce",
-      age: "72",
+      name: " Workforce",
+      age: "aging",
       images: [
         "https://images.unsplash.com/photo-1447005497901-b3e9ee359928?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
         "https://images.unsplash.com/photo-1559156280-0ae54c5aeab8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
@@ -30,8 +30,8 @@ const MigraDate = () => {
       backgroundColor: "#ffebee"
     },
     {
-      name: "Economic Growth",
-      age: "43",
+      name: "Economy",
+      age: "recessive",
       images: [
         "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
@@ -47,7 +47,7 @@ const MigraDate = () => {
     },
     {
       name: "Fax-Loving Bureaucracy",
-      age: "67",
+      age: "20th century",
       images: [
         "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
         "https://images.unsplash.com/photo-1568219656418-15c329312bf1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
@@ -63,12 +63,12 @@ const MigraDate = () => {
       backgroundColor: "#fff8e1"
     },
     {
-      name: "Katharina Reiche",
-      age: "Minister",
+      name: "Bundesregierung",
+      age: "2 weeks",
       images: [
-        "https://images.unsplash.com/photo-1573497161161-c3e73707e25c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+        process.env.PUBLIC_URL + "/images/merz.png",
+        process.env.PUBLIC_URL + "/images/Bas.png",
+        process.env.PUBLIC_URL + "/images/Reiche.png"
       ],
       bio: `Looking for innovative solutions to Germany's workforce crisis 💼
 
@@ -79,12 +79,10 @@ const MigraDate = () => {
       backgroundColor: "#e3f2fd"
     },
     {
-      name: "The Competition Crew",
-      age: "Various",
+      name: "Competition",
+      age: "numerous",
       images: [
-        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+        process.env.PUBLIC_URL + "/images/job_boards.png",
       ],
       bio: `Good at matching jobs within countries but lacking on international stage 🔄
 
@@ -97,11 +95,10 @@ const MigraDate = () => {
     },
     {
       name: "Make it in Germany",
-      age: "3",
+      age: "20",
       images: [
-        "https://images.unsplash.com/photo-1521791055366-0d553381c47a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1520333789090-1afc82db536a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+       process.env.PUBLIC_URL + "/images/makeitin.jpg",
+       process.env.PUBLIC_URL + "/images/jobs.png"
       ],
       bio: `Government's first attempt at matchmaking 🇩🇪 but not user-friendly enough.
 
@@ -114,7 +111,7 @@ const MigraDate = () => {
     },
     {
       name: "MigraDate",
-      age: "25",
+      age: "Pre Seed",
       images: [
         "https://images.unsplash.com/photo-1611926653458-09294b3142bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
         "https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
@@ -136,7 +133,6 @@ const MigraDate = () => {
       images: [
         "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
         "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
         "https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
         "https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
       ],
@@ -172,9 +168,7 @@ const MigraDate = () => {
       name: "Market Opportunity",
       age: "€40B",
       images: [
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1611095973763-414019e72400?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+       process.env.PUBLIC_URL + "/images/oppertunity2.png"
       ],
       bio: `Huge potential for the right partner 📊 Validated market need.
 
@@ -189,9 +183,7 @@ const MigraDate = () => {
       name: "Revenue Streams",
       age: "€€€",
       images: [
-        "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+        process.env.PUBLIC_URL + "/images/streams2.png"
       ],
       bio: `Multiple ways to make this relationship profitable 💰
 
@@ -207,9 +199,7 @@ const MigraDate = () => {
       name: "Market Entry Plan",
       age: "24",
       images: [
-        "https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1507208773393-40d9fc670c31?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+        process.env.PUBLIC_URL + "/images/entry2.png"
       ],
       bio: `Three phases to market domination 🚀
 
@@ -224,9 +214,7 @@ const MigraDate = () => {
       name: "Financial Projections",
       age: "€1.8M",
       images: [
-        "https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1561414927-6d86591d0c4f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+       process.env.PUBLIC_URL + "/images/revenue2.png"
       ],
       bio: `Looking for €150K investment for a serious relationship 📈
 
@@ -549,7 +537,7 @@ const MigraDate = () => {
                 border: '3px solid white'
               }}>
                 <img 
-                  src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                  src= "/images/johannes.jpg" 
                   alt="Johannes" 
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
@@ -955,7 +943,7 @@ const MigraDate = () => {
               scale: [1, 1.1, 1],
             }}
             transition={{ 
-              duration: 1.5,
+              duration: 3.5,
               repeat: Infinity, 
               repeatType: "loop" 
             }}
@@ -1105,22 +1093,7 @@ const MigraDate = () => {
                 </div>
               </div>
               
-              <div style={{
-                display: 'flex',
-                marginBottom: '15px',
-                justifyContent: 'flex-end'
-              }}>
-                <div style={{
-                  maxWidth: '80%',
-                  backgroundColor: '#0069b4',
-                  color: 'white',
-                  padding: '12px 15px',
-                  borderRadius: '18px',
-                  marginLeft: 'auto'
-                }}>
-                  <p style={{ margin: 0 }}>Thank you for reaching out! I'm excited about your platform. What would you like to know?</p>
-                </div>
-              </div>
+  
             </div>
             
             {/* Input */}
