@@ -17,10 +17,7 @@ const MigraDate = () => {
       name: " Workforce",
       age: "aging",
       images: [
-        "https://images.unsplash.com/photo-1447005497901-b3e9ee359928?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1559156280-0ae54c5aeab8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-      ],
+        "https://images.unsplash.com/photo-1447005497901-b3e9ee359928?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"      ],
       bio: `Getting older by the day 👴👵 and desperately seeking fresh talent.
 
 • Shrinking by 6 million working-age people by 2040 📉
@@ -33,7 +30,6 @@ const MigraDate = () => {
       name: "Economy",
       age: "recessive",
       images: [
-        "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
       ],
@@ -50,7 +46,6 @@ const MigraDate = () => {
       age: "20th century",
       images: [
         "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1568219656418-15c329312bf1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
         "https://images.unsplash.com/photo-1586282391129-76a6df230234?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
       ],
       bio: `Old-fashioned type who loves paperwork 📠📋 Not great with technology.
@@ -113,8 +108,6 @@ const MigraDate = () => {
       name: "MigraDate",
       age: "Pre Seed",
       images: [
-        "https://images.unsplash.com/photo-1611926653458-09294b3142bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
         "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
       ],
       bio: `Human connections first, paperwork later 🤝 Making migration fun!
@@ -133,8 +126,7 @@ const MigraDate = () => {
       images: [
         "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
         "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+     
       ],
       bio: `Skilled professionals seeking German opportunities but facing barriers 🌍
 
