@@ -74,7 +74,7 @@ const MigraTinder = () => {
     {
       name: "Make it in Germany",
       age: "3",
-      image: "https://images.unsplash.com/photo-1527792435278-f92a889458e5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+      image: "/images/makeitin.jpg",
       bio: `Government's first attempt at matchmaking 🇩🇪 but not user-friendly enough.
 
 • Overly focused on documentation before connections 📑
@@ -207,7 +207,7 @@ const MigraTinder = () => {
     {
       name: "Johannes",
       age: "Co-Founder",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+      image: "/images/johannes.jpg",
       bio: `GenAI Engineer with policy expertise 🤖🏛️
 
 • GenAI Engineer @ Accenture 💻
