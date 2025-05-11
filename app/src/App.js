@@ -1,18 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const MigraTinder = () => {
+const MigraDate = () => {
+  const [showStartPage, setShowStartPage] = useState(true);
   const [currentProfileIndex, setCurrentProfileIndex] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [direction, setDirection] = useState(null);
   const [showMatch, setShowMatch] = useState(false);
+  const [showMessagePopup, setShowMessagePopup] = useState(false);
   const [startX, setStartX] = useState(0);
+  const imageIntervalRef = useRef(null);
   
-  // Define all the profiles
+  // Define all the profiles with multiple images
   const profiles = [
     {
       name: "Aging Workforce",
       age: "72",
-      image: "https://images.unsplash.com/photo-1447005497901-b3e9ee359928?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1447005497901-b3e9ee359928?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1559156280-0ae54c5aeab8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+      ],
       bio: `Getting older by the day 👴👵 and desperately seeking fresh talent.
 
 • Shrinking by 6 million working-age people by 2040 📉
@@ -24,7 +32,11 @@ const MigraTinder = () => {
     {
       name: "Economic Growth",
       age: "43",
-      image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+      ],
       bio: `Currently losing serious money due to workforce shortages 📉
 
 • €40 billion annual economic impact from worker shortage 💰
@@ -36,7 +48,11 @@ const MigraTinder = () => {
     {
       name: "Fax-Loving Bureaucracy",
       age: "67",
-      image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1568219656418-15c329312bf1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1586282391129-76a6df230234?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+      ],
       bio: `Old-fashioned type who loves paperwork 📠📋 Not great with technology.
 
 • Application processing takes 6+ months on average ⏳
@@ -49,7 +65,11 @@ const MigraTinder = () => {
     {
       name: "Katharina Reiche",
       age: "Minister",
-      image: "https://images.unsplash.com/photo-1573497161161-c3e73707e25c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1573497161161-c3e73707e25c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+      ],
       bio: `Looking for innovative solutions to Germany's workforce crisis 💼
 
 • Supporter of digital transformation in public administration 💻
@@ -61,7 +81,11 @@ const MigraTinder = () => {
     {
       name: "The Competition Crew",
       age: "Various",
-      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+      ],
       bio: `Good at matching jobs within countries but lacking on international stage 🔄
 
 • LinkedIn: Premium costs deter users, auto-archiving of non-EU candidates 🔒
@@ -74,7 +98,11 @@ const MigraTinder = () => {
     {
       name: "Make it in Germany",
       age: "3",
-      image: "/images/makeitin.jpg",
+      images: [
+        "https://images.unsplash.com/photo-1521791055366-0d553381c47a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1520333789090-1afc82db536a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+      ],
       bio: `Government's first attempt at matchmaking 🇩🇪 but not user-friendly enough.
 
 • Overly focused on documentation before connections 📑
@@ -87,7 +115,11 @@ const MigraTinder = () => {
     {
       name: "MigraDate",
       age: "25",
-      image: "https://images.unsplash.com/photo-1611926653458-09294b3142bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1611926653458-09294b3142bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+      ],
       bio: `Human connections first, paperwork later 🤝 Making migration fun!
 
 • AI-powered skill-based matching (not just credentials) 🧠
@@ -99,36 +131,35 @@ const MigraTinder = () => {
       backgroundColor: "#fce4ec"
     },
     {
-      name: "Jamal",
-      age: "28",
-      image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-      bio: `Qualified care worker currently in Albania 🏥 Seeking German opportunity.
+      name: "International Talent",
+      age: "Worldwide",
+      images: [
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+      ],
+      bio: `Skilled professionals seeking German opportunities but facing barriers 🌍
 
-• Dual medical degree but struggling with credential recognition 🎓
-• 8-month wait for qualification verification ⏱️
-• Spent €2,000+ on document translations 💶
-• Abandoned three German applications due to complexity 😓
-• Needs practical demonstrations over paperwork 💪`,
+• Medical, tech, and engineering degrees but struggling with credential recognition 🎓
+• 8-month waits for qualification verification ⏱️
+• €2,000+ spent on document translations 💶
+• Application abandonment after 40+ hours spent on hiring process ⏰
+• No visibility into application status after submission 🔍
+• Software development expertise with 5+ years experience 👩‍💻
+• Need direct connections with potential employers 🤝`,
       backgroundColor: "#e0f7fa"
     },
     {
-      name: "Maria",
-      age: "31",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-      bio: `Tech specialist with MBA from US 💻 Looking for German opportunity.
-
-• Software development expertise with 5+ years experience 👩‍💻
-• Application abandonment after 40+ hours spent on hiring process ⏰
-• Can't evaluate her own foreign qualifications against German standards 📊
-• No visibility into application status after submission 🔍
-• Needs direct connection with potential employers 🤝`,
-      backgroundColor: "#f9fbe7"
-    },
-    {
-      name: "TechSolutions GmbH",
-      age: "SME",
-      image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-      bio: `Growing tech company in Munich desperate for talent 🔍
+      name: "Small-Medium Enterprises",
+      age: "Germany",
+      images: [
+        "https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1571844307880-751c6d86f3f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+      ],
+      bio: `Growing German businesses desperate for talent 🔍
 
 • 40+ hours spent per international hire attempt ⏱️
 • 70% application abandonment rate from international candidates 📉
@@ -140,7 +171,11 @@ const MigraTinder = () => {
     {
       name: "Market Opportunity",
       age: "€40B",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1611095973763-414019e72400?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+      ],
       bio: `Huge potential for the right partner 📊 Validated market need.
 
 • TAM: €40 billion (Germany skilled worker recruitment market) 🏢
@@ -153,7 +188,11 @@ const MigraTinder = () => {
     {
       name: "Revenue Streams",
       age: "€€€",
-      image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+      ],
       bio: `Multiple ways to make this relationship profitable 💰
 
 • Employers: Freemium for 10 postings, €150/additional posting 🏢
@@ -167,7 +206,11 @@ const MigraTinder = () => {
     {
       name: "Market Entry Plan",
       age: "24",
-      image: "https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1507208773393-40d9fc670c31?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+      ],
       bio: `Three phases to market domination 🚀
 
 • Phase 1: Government partnerships (Make-it-in-Germany integration) 🏛️
@@ -180,7 +223,11 @@ const MigraTinder = () => {
     {
       name: "Financial Projections",
       age: "€1.8M",
-      image: "https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1561414927-6d86591d0c4f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+      ],
       bio: `Looking for €150K investment for a serious relationship 📈
 
 • Break-even point: 18-24 months ⏱️
@@ -194,7 +241,9 @@ const MigraTinder = () => {
     {
       name: "Nima",
       age: "Co-Founder",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+      ],
       bio: `Data Scientist passionate about solving global challenges 🧠
 
 • Data Scientist @ Welthungerhilfe 🌍
@@ -207,7 +256,9 @@ const MigraTinder = () => {
     {
       name: "Johannes",
       age: "Co-Founder",
-      image: "/images/johannes.jpg",
+      images: [
+        process.env.PUBLIC_URL + "/images/johannes.jpg"
+      ],
       bio: `GenAI Engineer with policy expertise 🤖🏛️
 
 • GenAI Engineer @ Accenture 💻
@@ -220,7 +271,11 @@ const MigraTinder = () => {
     {
       name: "Perfect Match Investor",
       age: "€150K",
-      image: "https://images.unsplash.com/photo-1559523161-0fc0d8b38a7a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1559523161-0fc0d8b38a7a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1559523182-a284c3fb7cff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1579389083046-e3df9c2b3325?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+      ],
       bio: `Seeking innovative GovTech solutions with global impact 🌍
 
 • €150K seed funding opportunity 💰
@@ -233,8 +288,41 @@ const MigraTinder = () => {
     }
   ];
 
+  // Setup auto-rotating images
   useEffect(() => {
-    // Show match overlay when reaching the investor profile
+    if (profiles[currentProfileIndex]?.images.length > 1) {
+      // Clear any existing interval
+      if (imageIntervalRef.current) {
+        clearInterval(imageIntervalRef.current);
+      }
+      
+      // Set up a new interval
+      imageIntervalRef.current = setInterval(() => {
+        setCurrentImageIndex(prevIndex => 
+          (prevIndex + 1) % profiles[currentProfileIndex].images.length
+        );
+      }, 2000);
+    }
+    
+    // Cleanup interval on profile change or component unmount
+    return () => {
+      if (imageIntervalRef.current) {
+        clearInterval(imageIntervalRef.current);
+        imageIntervalRef.current = null;
+      }
+    };
+  }, [currentProfileIndex, profiles]);
+
+  // Reset image index when profile changes
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [currentProfileIndex]);
+
+  const handleStartPageClick = () => {
+    setShowStartPage(false);
+  };
+
+  const moveToNextProfile = () => {
     if (currentProfileIndex === profiles.length - 1) {
       setShowMatch(true);
       
@@ -245,14 +333,14 @@ const MigraTinder = () => {
       
       return () => clearTimeout(timer);
     }
-  }, [currentProfileIndex, profiles.length]);
+    
+    setCurrentProfileIndex(prevIndex => prevIndex + 1);
+  };
 
   const handleLike = () => {
     setDirection('right');
     setTimeout(() => {
-      setCurrentProfileIndex((prevIndex) => 
-        prevIndex < profiles.length - 1 ? prevIndex + 1 : prevIndex
-      );
+      moveToNextProfile();
       setDirection(null);
     }, 300);
   };
@@ -260,9 +348,7 @@ const MigraTinder = () => {
   const handleDislike = () => {
     setDirection('left');
     setTimeout(() => {
-      setCurrentProfileIndex((prevIndex) => 
-        prevIndex > 0 ? prevIndex - 1 : prevIndex
-      );
+      moveToNextProfile();
       setDirection(null);
     }, 300);
   };
@@ -280,19 +366,52 @@ const MigraTinder = () => {
   const handleSuperLike = () => {
     setDirection('up');
     setTimeout(() => {
-      setCurrentProfileIndex((prevIndex) => 
-        prevIndex < profiles.length - 1 ? prevIndex + 1 : prevIndex
-      );
+      moveToNextProfile();
       setDirection(null);
     }, 300);
   };
 
-  const handleBoost = () => {
-    // Add pulse animation to current profile
-    // Then proceed to next
-    setTimeout(() => {
-      handleLike();
-    }, 800);
+  const handleMessage = () => {
+    // Open message popup
+    setShowMessagePopup(true);
+  };
+
+  const handlePrevImage = (e) => {
+    e.stopPropagation();
+    if (profiles[currentProfileIndex].images.length > 1) {
+      setCurrentImageIndex((prevIndex) => 
+        prevIndex === 0 ? profiles[currentProfileIndex].images.length - 1 : prevIndex - 1
+      );
+      
+      // Reset timer when manually changing images
+      if (imageIntervalRef.current) {
+        clearInterval(imageIntervalRef.current);
+        imageIntervalRef.current = setInterval(() => {
+          setCurrentImageIndex(prevIndex => 
+            (prevIndex + 1) % profiles[currentProfileIndex].images.length
+          );
+        }, 2000);
+      }
+    }
+  };
+
+  const handleNextImage = (e) => {
+    e.stopPropagation();
+    if (profiles[currentProfileIndex].images.length > 1) {
+      setCurrentImageIndex((prevIndex) => 
+        (prevIndex + 1) % profiles[currentProfileIndex].images.length
+      );
+      
+      // Reset timer when manually changing images
+      if (imageIntervalRef.current) {
+        clearInterval(imageIntervalRef.current);
+        imageIntervalRef.current = setInterval(() => {
+          setCurrentImageIndex(prevIndex => 
+            (prevIndex + 1) % profiles[currentProfileIndex].images.length
+          );
+        }, 2000);
+      }
+    }
   };
 
   // Touch handlers for swiping
@@ -307,16 +426,175 @@ const MigraTinder = () => {
     // Swipe threshold
     if (Math.abs(diff) > 50) {
       if (diff > 0) {
-        // Swiped left
+        // Swiped left - dislike
         handleDislike();
       } else {
-        // Swiped right
+        // Swiped right - like
         handleLike();
       }
     }
   };
 
   const currentProfile = profiles[currentProfileIndex];
+
+  if (showStartPage) {
+    return (
+      <div className="start-page" onClick={handleStartPageClick} style={{
+        height: '100vh', 
+        width: '100%', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        justifyContent: 'center', 
+        alignItems: 'center',
+        background: 'linear-gradient(135deg, #0069b4, #00a0dc)',
+        padding: '20px',
+        color: 'white',
+        textAlign: 'center',
+        cursor: 'pointer'
+      }}>
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            maxWidth: '600px'
+          }}
+        >
+          {/* Logo */}
+          <motion.div
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            style={{ marginBottom: '30px' }}
+          >
+            <div style={{
+              width: '150px',
+              height: '150px',
+              borderRadius: '50%',
+              background: 'white',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              boxShadow: '0 10px 25px rgba(0,0,0,0.2)'
+            }}>
+              <div style={{ fontSize: '60px' }}>
+                💼❤️
+              </div>
+            </div>
+          </motion.div>
+          
+          {/* App Name */}
+          <h1 style={{ 
+            fontSize: '48px', 
+            fontWeight: 'bold', 
+            margin: '0 0 20px 0',
+            textShadow: '0 2px 10px rgba(0,0,0,0.2)'
+          }}>
+            MigraDate
+          </h1>
+          
+          {/* Tagline */}
+          <h2 style={{ 
+            fontSize: '24px', 
+            fontWeight: 'normal', 
+            margin: '0 0 30px 0',
+            opacity: 0.9
+          }}>
+            The Global Skilled Worker Matching Platform
+          </h2>
+          
+          <p style={{
+            fontSize: '18px',
+            maxWidth: '500px',
+            lineHeight: 1.5,
+            margin: '0 0 40px 0'
+          }}>
+            Connecting international talent to German employers through human-centered matching
+          </p>
+          
+          {/* Founders */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginBottom: '40px',
+            width: '100%'
+          }}>
+            <div style={{ margin: '0 15px', textAlign: 'center' }}>
+              <div style={{
+                width: '80px',
+                height: '80px',
+                borderRadius: '50%',
+                overflow: 'hidden',
+                margin: '0 auto 10px',
+                border: '3px solid white'
+              }}>
+                <img 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                  alt="Nima" 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </div>
+              <p style={{ margin: 0 }}>Nima</p>
+              <p style={{ margin: 0, fontSize: '14px', opacity: 0.8 }}>Data Scientist</p>
+            </div>
+            <div style={{ margin: '0 15px', textAlign: 'center' }}>
+              <div style={{
+                width: '80px',
+                height: '80px',
+                borderRadius: '50%',
+                overflow: 'hidden',
+                margin: '0 auto 10px',
+                border: '3px solid white'
+              }}>
+                <img 
+                  src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                  alt="Johannes" 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </div>
+              <p style={{ margin: 0 }}>Johannes</p>
+              <p style={{ margin: 0, fontSize: '14px', opacity: 0.8 }}>GenAI Engineer & Policy Expert</p>
+            </div>
+          </div>
+          
+          {/* QR Code mockup */}
+          <div style={{
+            background: 'white',
+            padding: '15px',
+            borderRadius: '10px',
+            boxShadow: '0 10px 25px rgba(0,0,0,0.2)'
+          }}>
+            <div style={{
+              width: '150px',
+              height: '150px',
+              background: 'repeating-conic-gradient(#0069b4 0% 25%, white 0% 50%)',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundSize: '20px 20px'
+            }}>
+              <div style={{ background: 'white', padding: '8px', borderRadius: '4px' }}>
+                <div style={{ fontSize: '24px' }}>💼❤️</div>
+              </div>
+            </div>
+          </div>
+
+          <motion.p
+            animate={{ opacity: [0, 1, 0], y: [0, -10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, repeatDelay: 0.5 }}
+            style={{
+              marginTop: '40px',
+              fontSize: '18px'
+            }}
+          >
+            Tap anywhere to continue
+          </motion.p>
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
     <div className="app-container" style={{ 
@@ -357,16 +635,116 @@ const MigraTinder = () => {
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        {/* Profile image */}
+        {/* Profile image carousel */}
         <div 
           style={{ 
             height: '60%', 
-            backgroundImage: `url(${currentProfile.image})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            position: 'relative'
+            position: 'relative',
+            overflow: 'hidden'
           }}
         >
+          <img 
+            src={currentProfile.images[currentImageIndex]}
+            alt={currentProfile.name}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
+          />
+          
+          {/* Image navigation buttons */}
+          {currentProfile.images.length > 1 && (
+            <>
+              <div 
+                onClick={handlePrevImage}
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  width: '20%',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'flex-start',
+                  padding: '0 15px',
+                  zIndex: 2
+                }}
+              >
+                <div style={{
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '50%',
+                  backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  fontSize: '20px'
+                }}>
+                  ◀
+                </div>
+              </div>
+              
+              <div 
+                onClick={handleNextImage}
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  bottom: 0,
+                  right: 0,
+                  width: '20%',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'flex-end',
+                  padding: '0 15px',
+                  zIndex: 2
+                }}
+              >
+                <div style={{
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '50%',
+                  backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  fontSize: '20px'
+                }}>
+                  ▶
+                </div>
+              </div>
+            </>
+          )}
+
+          {/* Image indicators */}
+          {currentProfile.images.length > 1 && (
+            <div style={{
+              position: 'absolute',
+              top: '10px',
+              left: 0,
+              right: 0,
+              display: 'flex',
+              justifyContent: 'center',
+              gap: '4px',
+              zIndex: 2
+            }}>
+              {currentProfile.images.map((_, index) => (
+                <div
+                  key={index}
+                  style={{
+                    width: '6px',
+                    height: '6px',
+                    borderRadius: '50%',
+                    backgroundColor: index === currentImageIndex ? 'white' : 'rgba(255, 255, 255, 0.5)',
+                    transition: 'all 0.3s ease'
+                  }}
+                />
+              ))}
+            </div>
+          )}
+
           {/* Gradient overlay for text visibility */}
           <div style={{
             position: 'absolute',
@@ -502,9 +880,9 @@ const MigraTinder = () => {
             fontSize: '20px',
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)'
           }}
-          onClick={handleBoost}
+          onClick={handleMessage}
         >
-          ⚡
+          💬
         </motion.button>
         
         <motion.button
@@ -588,8 +966,206 @@ const MigraTinder = () => {
           <p style={{ fontSize: '1.2rem' }}>Tap anywhere to continue</p>
         </motion.div>
       )}
+      
+      {/* Message popup */}
+      <AnimatePresence>
+        {showMessagePopup && (
+          <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 100 }}
+            style={{
+              position: 'fixed',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              backgroundColor: 'white',
+              borderTopLeftRadius: '20px',
+              borderTopRightRadius: '20px',
+              boxShadow: '0 -5px 20px rgba(0, 0, 0, 0.2)',
+              padding: '20px',
+              zIndex: 1000,
+              maxHeight: '80vh',
+              overflowY: 'auto'
+            }}
+          >
+            {/* Header */}
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: '20px',
+              borderBottom: '1px solid #eee',
+              paddingBottom: '15px'
+            }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px'
+              }}>
+                <div style={{
+                  width: '50px',
+                  height: '50px',
+                  borderRadius: '50%',
+                  overflow: 'hidden'
+                }}>
+                  <img 
+                    src={currentProfile.images[0]}
+                    alt={currentProfile.name}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover'
+                    }}
+                  />
+                </div>
+                <div>
+                  <h3 style={{ margin: 0, fontSize: '18px' }}>{currentProfile.name}</h3>
+                  <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>Active now</p>
+                </div>
+              </div>
+              <div style={{
+                display: 'flex',
+                gap: '15px'
+              }}>
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    border: 'none',
+                    backgroundColor: '#f0f2f5',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                    fontSize: '20px'
+                  }}
+                >
+                  📞
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    border: 'none',
+                    backgroundColor: '#f0f2f5',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                    fontSize: '20px'
+                  }}
+                >
+                  📹
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    border: 'none',
+                    backgroundColor: '#f0f2f5',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                    fontSize: '20px'
+                  }}
+                  onClick={() => setShowMessagePopup(false)}
+                >
+                  ✖️
+                </motion.button>
+              </div>
+            </div>
+            
+            {/* Messages */}
+            <div style={{
+              marginBottom: '20px'
+            }}>
+              <div style={{
+                display: 'flex',
+                marginBottom: '15px'
+              }}>
+                <div style={{
+                  maxWidth: '80%',
+                  backgroundColor: '#f0f2f5',
+                  padding: '12px 15px',
+                  borderRadius: '18px',
+                  marginRight: 'auto'
+                }}>
+                  <p style={{ margin: 0 }}>Hi there, we have a good feeling to be matching. We would like to know you more detailed.</p>
+                </div>
+              </div>
+              
+              <div style={{
+                display: 'flex',
+                marginBottom: '15px',
+                justifyContent: 'flex-end'
+              }}>
+                <div style={{
+                  maxWidth: '80%',
+                  backgroundColor: '#0069b4',
+                  color: 'white',
+                  padding: '12px 15px',
+                  borderRadius: '18px',
+                  marginLeft: 'auto'
+                }}>
+                  <p style={{ margin: 0 }}>Thank you for reaching out! I'm excited about your platform. What would you like to know?</p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Input */}
+            <div style={{
+              display: 'flex',
+              gap: '10px',
+              alignItems: 'center'
+            }}>
+              <input 
+                type="text" 
+                placeholder="Type a message..."
+                style={{
+                  flex: 1,
+                  padding: '12px 15px',
+                  borderRadius: '20px',
+                  border: '1px solid #ddd',
+                  fontSize: '16px',
+                  outline: 'none'
+                }}
+              />
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                style={{
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '50%',
+                  border: 'none',
+                  backgroundColor: '#0069b4',
+                  color: 'white',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                  fontSize: '20px'
+                }}
+              >
+                ↗️
+              </motion.button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
 
-export default MigraTinder;
+export default MigraDate;
