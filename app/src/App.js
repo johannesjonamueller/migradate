@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const MigraDate = () => {
+const MigraMatch = () => {
   const [showStartPage, setShowStartPage] = useState(true);
   const [currentProfileIndex, setCurrentProfileIndex] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -10,157 +10,146 @@ const MigraDate = () => {
   const [showMessagePopup, setShowMessagePopup] = useState(false);
   const [startX, setStartX] = useState(0);
   const imageIntervalRef = useRef(null);
+  const [showFullScreenImage, setShowFullScreenImage] = useState(false);
+  const [fullScreenImageUrl, setFullScreenImageUrl] = useState('');
   
   // Define all the profiles with multiple images
   const profiles = [
     {
-      name: " Workforce",
-      age: "aging",
+      name: "Demographics",
+      age: "critical",
       images: [
-        "https://images.unsplash.com/photo-1447005497901-b3e9ee359928?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"      ],
-      bio: `Getting older by the day 👴👵 and desperately seeking fresh talent.
-
-• Shrinking by 6 million working-age people by 2040 📉
-• 28.3% of companies can't find qualified workers 🔍
-• Service providers (35.1%) and legal/tax firms (75%) hit hardest ⚖️
-• Skilled worker shortage costs €70 billion annually in productivity 💸`,
+        "https://images.unsplash.com/photo-1447005497901-b3e9ee359928?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+      ],
+      bio: `🚨 PROBLEM: Germany's aging workforce crisis
+ 
+ - Working population shrinking by 6 million by 2040 📉
+ - 28.3% of companies can't find qualified workers 🔍
+ - 75% of legal/tax firms unable to fill positions ⚖️
+ - €70 billion annual productivity loss 💸
+ - Critical sectors like healthcare severely understaffed 🏥`,
       backgroundColor: "#ffebee"
     },
     {
-      name: "Economy",
-      age: "recessive",
+      name: "Economic Losses",
+      age: "€40B ",
       images: [
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
       ],
-      bio: `Currently losing serious money due to workforce shortages 📉
-
-• €40 billion annual economic impact from worker shortage 💰
-• Critical infrastructure gaps emerging in key sectors 🏗️
-• Need 300,000+ skilled workers annually (only getting 200,000) 👷‍♀️
-• Heavy impact on manufacturing (23%) and healthcare sectors 🏭`,
+      bio: `💰 Economic losses from workforce shortage
+ 
+ - €40 billion total economic impact annually 📊
+ - Critical infrastructure gaps in key sectors 🏗️
+ - Need 300,000 skilled workers annually (only getting 200,000) 👷‍♀️
+ - Manufacturing down 23%, healthcare severely affected 🏭
+ - SMEs losing €120K per unfilled position yearly 💳`,
       backgroundColor: "#e8f5e9"
     },
     {
-      name: "Fax-Loving Bureaucracy",
-      age: "20th century",
+      name: "Bureaucracy",
+      age: "Bottelneck",
       images: [
-        "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1586282391129-76a6df230234?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+        "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
       ],
-      bio: `Old-fashioned type who loves paperwork 📠📋 Not great with technology.
-
-• Application processing takes 6+ months on average ⏳
-• 40% abandonment rate on skilled worker applications 🚶‍♂️
-• 7 disconnected systems for verification 🔄
-• 35% error rate in documentation processing ❌
-• €2,000+ costs for credential translations 💶`,
+      bio: `📋 Bureaucratic barriers killing talent influx
+ 
+ - 6+ months average processing time ⏳
+ - 40% application abandonment rate 🚶‍♂️
+ - 7 disconnected government systems 🔄
+ - 35% error rate in documentation ❌
+ - €2,000+ translation costs per candidate 💶
+ - Still using fax machines in 2025 📠`,
       backgroundColor: "#fff8e1"
     },
     {
-      name: "Bundesregierung",
-      age: "2 weeks",
+      name: "Jobportals",
+      age: "Inadequate",
       images: [
-        process.env.PUBLIC_URL + "/images/merz.png",
-        process.env.PUBLIC_URL + "/images/Bas.png",
-        process.env.PUBLIC_URL + "/images/Reiche.png"
-      ],
-      bio: `Looking for innovative solutions to Germany's workforce crisis 💼
-
-• Supporter of digital transformation in public administration 💻
-• Implementing Fachkräfteeinwanderungsgesetz (Skilled Immigration Act) 📜
-• Need tech solutions to process more than 200,000 visas annually 🔄
-• Focused on economic growth through talent acquisition 📈`,
-      backgroundColor: "#e3f2fd"
-    },
-    {
-      name: "Competition",
-      age: "numerous",
-      images: [
-        process.env.PUBLIC_URL + "/images/job_boards.png",
-      ],
-      bio: `Good at matching jobs within countries but lacking on international stage 🔄
-
-• LinkedIn: Premium costs deter users, auto-archiving of non-EU candidates 🔒
-• Indeed: Overwhelming for niche seekers, limited filters 🔍
-• StepStone: High costs for small firms, minimal migrant support 💰
-• Xing: Small international job pool, complex for non-networkers 🌐
-• Monster: Generic experience, weak migrant integration 👾`,
+        process.env.PUBLIC_URL + "/images/job_boards.png"
+        ],
+      bio: `❌ Existing platforms miss the mark
+ 
+ COMPETITORS:
+ - LinkedIn: Expensive, auto-archives non-EU candidates 🔒
+ - Indeed/StepStone: No migration focus, overwhelming 🌊
+ - Limited international reach, poor SME integration
+ 
+ GOVERNMENT EFFORTS:
+ - Make-it-in-Germany: Documentation-first, no human connection 📋
+ - Process-driven, not user-friendly
+ - No gamification or modern UX 🤖`,
       backgroundColor: "#f3e5f5"
     },
     {
-      name: "Make it in Germany",
-      age: "20",
+      name: "MigraMatch",
+      age: "The Solution",
       images: [
-       process.env.PUBLIC_URL + "/images/makeitin.jpg",
-       process.env.PUBLIC_URL + "/images/jobs.png"
+       process.env.PUBLIC_URL + "/images/migra.jpeg"
       ],
-      bio: `Government's first attempt at matchmaking 🇩🇪 but not user-friendly enough.
-
-• Overly focused on documentation before connections 📑
-• Requires extensive paperwork upfront 📝
-• Limited interaction between employers and candidates 🤝
-• Missing gamification elements to increase engagement 🎮
-• Platform is process-driven rather than human-centered 🤖`,
-      backgroundColor: "#e8eaf6"
-    },
-    {
-      name: "MigraDate",
-      age: "Pre Seed",
-      images: [
-        "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-      ],
-      bio: `Human connections first, paperwork later 🤝 Making migration fun!
-
-• AI-powered skill-based matching (not just credentials) 🧠
-• 65% faster hiring process than traditional methods ⚡
-• 30% higher match quality leading to better retention 🎯
-• Gamified skill verification through interactive challenges 🎮
-• Direct messaging/video calls before bureaucracy begins 💬
-• Integrated with government systems for visa tracking 🔄`,
+      bio: `🎯 SOLUTION: Human connections first, paperwork later
+ 
+ ✅ AI-powered skill-based matching (not credentials)
+ ✅ 65% faster hiring process
+ ✅ 30% higher match quality & retention
+ ✅ Gamified skill verification challenges
+ ✅ Direct messaging/video calls before bureaucracy
+ ✅ Automated visa tracking & documentation
+ ✅ Government API integration
+ ✅ Mobile-first, Tinder-like UX`,
       backgroundColor: "#fce4ec"
     },
     {
-      name: "International Talent",
-      age: "Worldwide",
+      name: "Sofia",
+      age: "29, Software Engineer",
       images: [
-        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-     
+        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
       ],
-      bio: `Skilled professionals seeking German opportunities but facing barriers 🌍
-
-• Medical, tech, and engineering degrees but struggling with credential recognition 🎓
-• 8-month waits for qualification verification ⏱️
-• €2,000+ spent on document translations 💶
-• Application abandonment after 40+ hours spent on hiring process ⏰
-• No visibility into application status after submission 🔍
-• Software development expertise with 5+ years experience 👩‍💻
-• Need direct connections with potential employers 🤝`,
+      bio: `👩‍💻 CASE STUDY: International Talent Success
+ 
+ FROM ROMANIA 🇷🇴 TO BERLIN 🇩🇪
+ 
+ THE CHALLENGE:
+ - 5+ years experience but credentials not recognized
+ - Spent €2,000+ on translations
+ - 8 months waiting for verification
+ - 40+ hours on failed applications
+ 
+ WITH MIGRA MATCH:
+ - Matched based on coding skills, not papers ⚡
+ - Connected directly with employers 🤝
+ - Visa process started immediately after match ✅
+ - Landed job in 3 weeks vs. 8+ months 🎯`,
       backgroundColor: "#e0f7fa"
     },
     {
-      name: "Small-Medium Enterprises",
-      age: "Germany",
+      name: "Klaus",
+      age: "CEO SME",
       images: [
-        "https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1571844307880-751c6d86f3f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
         "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-      ],
-      bio: `Growing German businesses desperate for talent 🔍
-
-• 40+ hours spent per international hire attempt ⏱️
-• 70% application abandonment rate from international candidates 📉
-• Limited global reach for talent acquisition 🌍
-• Can't effectively evaluate foreign qualifications 📄
-• No resources for managing complex visa processes 🛂`,
+         ],
+      bio: `🏭 CASE STUDY: SME Success Story
+ 
+ BAVARIA-BASED MANUFACTURING COMPANY
+ 
+ THE CHALLENGE:
+ - Needed skilled technicians urgently 🔧
+ - 40+ hours spent per failed international hire
+ - 70% candidate abandonment rate
+ - Lost €240K in productivity while positions vacant
+ 
+ WITH MIGRA MATCH:
+ - Found 3 qualified technicians from Poland 🇵🇱
+ - Skill-based matching eliminated guesswork ✅
+ - Direct communication reduced misunderstandings 💬
+ - Hired all 3 within 6 weeks 🚀
+ - Saved €180K in recruitment costs 💰`,
       backgroundColor: "#f1f8e9"
     },
     {
       name: "Market Opportunity",
       age: "€40B",
       images: [
-       process.env.PUBLIC_URL + "/images/oppertunity2.png"
+       process.env.PUBLIC_URL + "/images/oppertunity4.png"
       ],
       bio: `Huge potential for the right partner 📊 Validated market need.
 
@@ -175,7 +164,7 @@ const MigraDate = () => {
       name: "Revenue Streams",
       age: "€€€",
       images: [
-        process.env.PUBLIC_URL + "/images/streams2.png"
+        process.env.PUBLIC_URL + "/images/streams4.png"
       ],
       bio: `Multiple ways to make this relationship profitable 💰
 
@@ -191,7 +180,7 @@ const MigraDate = () => {
       name: "Market Entry Plan",
       age: "24",
       images: [
-        process.env.PUBLIC_URL + "/images/entry2.png"
+        process.env.PUBLIC_URL + "/images/entry5.png"
       ],
       bio: `Three phases to market domination 🚀
 
@@ -206,7 +195,7 @@ const MigraDate = () => {
       name: "Financial Projections",
       age: "€1.8M",
       images: [
-       process.env.PUBLIC_URL + "/images/revenue2.png"
+       process.env.PUBLIC_URL + "/images/revenue5.png"
       ],
       bio: `Looking for €150K investment for a serious relationship 📈
 
@@ -222,7 +211,7 @@ const MigraDate = () => {
       name: "Nima",
       age: "Co-Founder",
       images: [
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+        process.env.PUBLIC_URL + "/images/nima.jpeg"
       ],
       bio: `Data Scientist passionate about solving global challenges 🧠
 
@@ -253,8 +242,6 @@ const MigraDate = () => {
       age: "€150K",
       images: [
         "https://images.unsplash.com/photo-1559523161-0fc0d8b38a7a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1559523182-a284c3fb7cff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1579389083046-e3df9c2b3325?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
       ],
       bio: `Seeking innovative GovTech solutions with global impact 🌍
 
@@ -416,7 +403,6 @@ const MigraDate = () => {
   };
 
   const currentProfile = profiles[currentProfileIndex];
-
   if (showStartPage) {
     return (
       <div className="start-page" onClick={handleStartPageClick} style={{
@@ -426,11 +412,12 @@ const MigraDate = () => {
         flexDirection: 'column', 
         justifyContent: 'center', 
         alignItems: 'center',
-        background: 'linear-gradient(135deg, #0069b4, #00a0dc)',
+        background: 'white',
         padding: '20px',
-        color: 'white',
+        color: '#333',
         textAlign: 'center',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        overflow: 'auto'
       }}>
         <motion.div
           initial={{ opacity: 0, y: -50 }}
@@ -440,29 +427,26 @@ const MigraDate = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            maxWidth: '600px'
+            maxWidth: '600px',
+            width: '100%'
           }}
         >
-          {/* Logo */}
+          {/* MigraMatch Logo */}
           <motion.div
             animate={{ scale: [1, 1.05, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
-            style={{ marginBottom: '30px' }}
+            style={{ marginBottom: '20px' }}
           >
-            <div style={{
-              width: '150px',
-              height: '150px',
-              borderRadius: '50%',
-              background: 'white',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              boxShadow: '0 10px 25px rgba(0,0,0,0.2)'
-            }}>
-              <div style={{ fontSize: '60px' }}>
-                💼❤️
-              </div>
-            </div>
+            <img 
+              src={process.env.PUBLIC_URL + "/images/migra.jpeg"}
+              alt="MigraMatch Logo"
+              style={{
+                width: '200px',
+                height: 'auto',
+                borderRadius: '15px',
+                boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
+              }}
+            />
           </motion.div>
           
           {/* App Name */}
@@ -470,9 +454,10 @@ const MigraDate = () => {
             fontSize: '48px', 
             fontWeight: 'bold', 
             margin: '0 0 20px 0',
-            textShadow: '0 2px 10px rgba(0,0,0,0.2)'
+            color: '#0069b4',
+            textShadow: '0 2px 10px rgba(0,0,0,0.1)'
           }}>
-            MigraDate
+            MigraMatch
           </h1>
           
           {/* Tagline */}
@@ -480,7 +465,7 @@ const MigraDate = () => {
             fontSize: '24px', 
             fontWeight: 'normal', 
             margin: '0 0 30px 0',
-            opacity: 0.9
+            color: '#666'
           }}>
             The Global Skilled Worker Matching Platform
           </h2>
@@ -489,7 +474,8 @@ const MigraDate = () => {
             fontSize: '18px',
             maxWidth: '500px',
             lineHeight: 1.5,
-            margin: '0 0 40px 0'
+            margin: '0 0 40px 0',
+            color: '#777'
           }}>
             Connecting international talent to German employers through human-centered matching
           </p>
@@ -498,66 +484,199 @@ const MigraDate = () => {
           <div style={{
             display: 'flex',
             justifyContent: 'center',
-            marginBottom: '40px',
-            width: '100%'
+            marginBottom: '30px',
+            width: '100%',
+            gap: '30px'
           }}>
-            <div style={{ margin: '0 15px', textAlign: 'center' }}>
+            <div style={{ textAlign: 'center' }}>
               <div style={{
                 width: '80px',
                 height: '80px',
                 borderRadius: '50%',
                 overflow: 'hidden',
                 margin: '0 auto 10px',
-                border: '3px solid white'
+                border: '3px solid #0069b4'
               }}>
                 <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                  src={process.env.PUBLIC_URL + "/images/nima.jpeg"} 
                   alt="Nima" 
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               </div>
-              <p style={{ margin: 0 }}>Nima</p>
-              <p style={{ margin: 0, fontSize: '14px', opacity: 0.8 }}>Data Scientist</p>
+              <p style={{ margin: '5px 0', fontWeight: 'bold' }}>Nima</p>
+              <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>Data Scientist</p>
+              <a 
+                href="https://github.com/nimathing2052" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{ 
+                  fontSize: '12px', 
+                  color: '#0069b4', 
+                  textDecoration: 'none',
+                  display: 'inline-block',
+                  marginTop: '5px'
+                }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                GitHub 🔗
+              </a>
             </div>
-            <div style={{ margin: '0 15px', textAlign: 'center' }}>
+            <div style={{ textAlign: 'center' }}>
               <div style={{
                 width: '80px',
                 height: '80px',
                 borderRadius: '50%',
                 overflow: 'hidden',
                 margin: '0 auto 10px',
-                border: '3px solid white'
+                border: '3px solid #0069b4'
               }}>
                 <img 
-                  src= "/images/johannes.jpg" 
+                  src={process.env.PUBLIC_URL + "/images/johannes.jpg"} 
                   alt="Johannes" 
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               </div>
-              <p style={{ margin: 0 }}>Johannes</p>
-              <p style={{ margin: 0, fontSize: '14px', opacity: 0.8 }}>GenAI Engineer & Policy Expert</p>
+              <p style={{ margin: '5px 0', fontWeight: 'bold' }}>Johannes</p>
+              <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>GenAI Engineer & Policy Expert</p>
+              <a 
+                href="https://github.com/johannesjonamueller" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{ 
+                  fontSize: '12px', 
+                  color: '#0069b4', 
+                  textDecoration: 'none',
+                  display: 'inline-block',
+                  marginTop: '5px'
+                }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                GitHub 🔗
+              </a>
             </div>
           </div>
           
-          {/* QR Code mockup */}
+          {/* User Guide */}
+          <motion.div
+            style={{
+              backgroundColor: '#f8f9fa',
+              borderRadius: '15px',
+              padding: '20px',
+              marginBottom: '20px',
+              maxWidth: '500px',
+              textAlign: 'left'
+            }}
+          >
+            <h3 style={{ 
+              fontSize: '18px', 
+              marginBottom: '15px',
+              textAlign: 'center',
+              color: '#0069b4'
+            }}>
+              📱 How to Navigate This Presentation
+            </h3>
+            
+            <div style={{ fontSize: '14px', lineHeight: '1.6', color: '#555' }}>
+              <p style={{ marginBottom: '10px' }}>
+                <strong>Navigation:</strong>
+              </p>
+              <ul style={{ paddingLeft: '20px', marginBottom: '15px' }}>
+                <li>❌ ❤️ ⭐ = Next slide</li>
+                <li>↩️ = Previous slide</li>
+                <li>💬 = Demo chat </li>
+              </ul>
+              
+              <div style={{ 
+                backgroundColor: '#e3f2fd',
+                borderRadius: '10px',
+                padding: '15px',
+                marginBottom: '15px'
+              }}>
+                <p style={{ margin: 0, fontSize: '13px', color: '#555' }}>
+                  <strong>Note:</strong> This is our pitch deck presented as a matching app interface - not a prototype of MigraMatch itself. It follows our course structure: Problem → Solution → Competition → User Journey → Financials.
+                </p>
+              </div>
+              
+              <p style={{ fontSize: '13px', margin: 0, color: '#777' }}>
+                Swipe or use buttons to explore our startup journey!
+              </p>
+            </div>
+          </motion.div>
+          
+          {/* QR Code */}
           <div style={{
             background: 'white',
             padding: '15px',
             borderRadius: '10px',
-            boxShadow: '0 10px 25px rgba(0,0,0,0.2)'
+            boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+            marginBottom: '30px'
           }}>
-            <div style={{
-              width: '150px',
-              height: '150px',
-              background: 'repeating-conic-gradient(#0069b4 0% 25%, white 0% 50%)',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              backgroundSize: '20px 20px'
+            <img 
+              src={process.env.PUBLIC_URL + "/images/qr.png"}
+              alt="QR Code"
+              style={{
+                width: '150px',
+                height: '150px'
+              }}
+            />
+          </div>
+
+          {/* Course Information */}
+          <div style={{
+            backgroundColor: '#f8f9fa',
+            borderRadius: '15px',
+            padding: '20px',
+            maxWidth: '500px',
+            textAlign: 'center',
+            border: '1px solid #e9ecef'
+          }}>
+            <img 
+              src={process.env.PUBLIC_URL + "/images/hertie.png"}
+              alt="Hertie School Logo"
+              style={{
+                width: '120px',
+                height: 'auto',
+                marginBottom: '15px'
+              }}
+            />
+            <h3 style={{ 
+              fontSize: '16px', 
+              marginBottom: '10px',
+              color: '#0069b4'
             }}>
-              <div style={{ background: 'white', padding: '8px', borderRadius: '4px' }}>
-                <div style={{ fontSize: '24px' }}>💼❤️</div>
-              </div>
+              Spring 2025 Project
+            </h3>
+            <p style={{
+              fontSize: '14px',
+              margin: '0 0 15px 0',
+              color: '#555',
+              fontWeight: 'bold'
+            }}>
+              Entrepreneurship, Tech & Public Policy:<br />
+              Founding and Scaling a Software Startup with Public Impact
+            </p>
+            <div style={{ fontSize: '13px', color: '#777' }}>
+              <p style={{ margin: '10px 0' }}>
+                <strong>Professors:</strong>
+              </p>
+              <p style={{ margin: '5px 0' }}>
+                <a 
+                  href="mailto:faruk.tuncer@polyteia.de" 
+                  style={{ color: '#0069b4', textDecoration: 'none' }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  Faruk Tuncer
+                </a>
+              </p>
+              <p style={{ margin: '5px 0' }}>
+                <a 
+                  href="mailto:alexa.moeller@polyteia.de" 
+                  style={{ color: '#0069b4', textDecoration: 'none' }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  Alexa Möller
+                </a>
+              </p>
             </div>
           </div>
 
@@ -565,8 +684,9 @@ const MigraDate = () => {
             animate={{ opacity: [0, 1, 0], y: [0, -10, 0] }}
             transition={{ duration: 2, repeat: Infinity, repeatDelay: 0.5 }}
             style={{
-              marginTop: '40px',
-              fontSize: '18px'
+              marginTop: '20px',
+              fontSize: '18px',
+              color: '#0069b4'
             }}
           >
             Tap anywhere to continue
@@ -615,143 +735,172 @@ const MigraDate = () => {
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        {/* Profile image carousel */}
-        <div 
-          style={{ 
-            height: '60%', 
-            position: 'relative',
-            overflow: 'hidden'
+      {/* Profile image carousel */}
+      <div 
+        style={{ 
+          height: '60%', 
+          position: 'relative',
+          overflow: 'hidden'
+        }}
+      >
+        {/* Main clickable image area (center 60%) */}
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: '20%',
+            width: '60%',
+            height: '100%',
+            cursor: 'pointer',
+            zIndex: 3
           }}
-        >
-          <img 
-            src={currentProfile.images[currentImageIndex]}
-            alt={currentProfile.name}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-            }}
-          />
-          
-          {/* Image navigation buttons */}
-          {currentProfile.images.length > 1 && (
-            <>
-              <div 
-                onClick={handlePrevImage}
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  bottom: 0,
-                  left: 0,
-                  width: '20%',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'flex-start',
-                  padding: '0 15px',
-                  zIndex: 2
-                }}
-              >
-                <div style={{
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '50%',
-                  backgroundColor: 'rgba(255, 255, 255, 0.5)',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  fontSize: '20px'
-                }}>
-                  ◀
-                </div>
+          onClick={(e) => {
+            e.stopPropagation();
+            setFullScreenImageUrl(currentProfile.images[currentImageIndex]);
+            setShowFullScreenImage(true);
+          }}
+        />
+        
+        <img 
+          src={currentProfile.images[currentImageIndex]}
+          alt={currentProfile.name}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            zIndex: 1
+          }}
+        />
+        
+        {/* Image navigation buttons */}
+        {currentProfile.images.length > 1 && (
+          <>
+            <div 
+              onClick={handlePrevImage}
+              style={{
+                position: 'absolute',
+                top: 0,
+                bottom: 0,
+                left: 0,
+                width: '20%',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-start',
+                padding: '0 15px',
+                zIndex: 4,
+                background: 'linear-gradient(to right, rgba(0,0,0,0.1), transparent)'
+              }}
+            >
+              <div style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                fontSize: '20px',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+                transition: 'all 0.2s ease'
+              }}>
+                ◀
               </div>
-              
-              <div 
-                onClick={handleNextImage}
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  bottom: 0,
-                  right: 0,
-                  width: '20%',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'flex-end',
-                  padding: '0 15px',
-                  zIndex: 2
-                }}
-              >
-                <div style={{
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '50%',
-                  backgroundColor: 'rgba(255, 255, 255, 0.5)',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  fontSize: '20px'
-                }}>
-                  ▶
-                </div>
-              </div>
-            </>
-          )}
-
-          {/* Image indicators */}
-          {currentProfile.images.length > 1 && (
-            <div style={{
-              position: 'absolute',
-              top: '10px',
-              left: 0,
-              right: 0,
-              display: 'flex',
-              justifyContent: 'center',
-              gap: '4px',
-              zIndex: 2
-            }}>
-              {currentProfile.images.map((_, index) => (
-                <div
-                  key={index}
-                  style={{
-                    width: '6px',
-                    height: '6px',
-                    borderRadius: '50%',
-                    backgroundColor: index === currentImageIndex ? 'white' : 'rgba(255, 255, 255, 0.5)',
-                    transition: 'all 0.3s ease'
-                  }}
-                />
-              ))}
             </div>
-          )}
+            
+            <div 
+              onClick={handleNextImage}
+              style={{
+                position: 'absolute',
+                top: 0,
+                bottom: 0,
+                right: 0,
+                width: '20%',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-end',
+                padding: '0 15px',
+                zIndex: 4,
+                background: 'linear-gradient(to left, rgba(0,0,0,0.1), transparent)'
+              }}
+            >
+              <div style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                fontSize: '20px',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+                transition: 'all 0.2s ease'
+              }}>
+                ▶
+              </div>
+            </div>
+          </>
+        )}
 
-          {/* Gradient overlay for text visibility */}
+        {/* Image indicators */}
+        {currentProfile.images.length > 1 && (
           <div style={{
             position: 'absolute',
-            bottom: 0,
+            top: '10px',
             left: 0,
             right: 0,
-            height: '50%',
-            background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%)',
-            padding: '20px',
             display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'flex-end'
+            justifyContent: 'center',
+            gap: '4px',
+            zIndex: 2
           }}>
-            <div style={{
-              display: 'flex',
-              alignItems: 'flex-end',
-              gap: '10px'
-            }}>
-              <h2 style={{ color: 'white', margin: 0, fontSize: '28px', fontWeight: 'bold' }}>
-                {currentProfile.name}
-              </h2>
-              <span style={{ color: 'white', fontSize: '24px', marginBottom: '4px' }}>
-                , {currentProfile.age}
-              </span>
-            </div>
+            {currentProfile.images.map((_, index) => (
+              <div
+                key={index}
+                style={{
+                  width: '6px',
+                  height: '6px',
+                  borderRadius: '50%',
+                  backgroundColor: index === currentImageIndex ? 'white' : 'rgba(255, 255, 255, 0.5)',
+                  transition: 'all 0.3s ease'
+                }}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Gradient overlay for text visibility */}
+        <div style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: '50%',
+          background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%)',
+          padding: '20px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-end',
+          zIndex: 2
+        }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'flex-end',
+            gap: '10px'
+          }}>
+            <h2 style={{ color: 'white', margin: 0, fontSize: '28px', fontWeight: 'bold' }}>
+              {currentProfile.name}
+            </h2>
+            <span style={{ color: 'white', fontSize: '24px', marginBottom: '4px' }}>
+              , {currentProfile.age}
+            </span>
           </div>
         </div>
+      </div>
         
         {/* Profile bio */}
         <div style={{ 
@@ -1129,8 +1278,79 @@ const MigraDate = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Full-screen image overlay */}
+      <AnimatePresence>
+        {showFullScreenImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100vw',
+              height: '100vh',
+              backgroundColor: 'rgba(0, 0, 0, 0.9)',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              zIndex: 2000,
+              cursor: 'pointer'
+            }}
+            onClick={() => setShowFullScreenImage(false)}
+          >
+            <motion.img
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+              src={fullScreenImageUrl}
+              alt="Full screen view"
+              style={{
+                maxWidth: '90%',
+                maxHeight: '90%',
+                objectFit: 'contain',
+                borderRadius: '10px'
+              }}
+              onClick={(e) => e.stopPropagation()}
+            />
+            
+            {/* Close button */}
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              style={{
+                position: 'absolute',
+                top: '20px',
+                right: '20px',
+                width: '50px',
+                height: '50px',
+                borderRadius: '50%',
+                border: 'none',
+                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                color: '#333',
+                fontSize: '24px',
+                cursor: 'pointer',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                zIndex: 2001
+              }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowFullScreenImage(false);
+              }}
+            >
+              ✕
+            </motion.button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
 
-export default MigraDate;
+export default MigraMatch;
