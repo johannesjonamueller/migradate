@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/migradate/static/css/main.e6c13ad2.css",
-    "main.js": "/migradate/static/js/main.dc27cfae.js",
-    "static/js/453.a6a97343.chunk.js": "/migradate/static/js/453.a6a97343.chunk.js",
-    "index.html": "/migradate/index.html",
-    "main.e6c13ad2.css.map": "/migradate/static/css/main.e6c13ad2.css.map",
-    "main.dc27cfae.js.map": "/migradate/static/js/main.dc27cfae.js.map",
-    "453.a6a97343.chunk.js.map": "/migradate/static/js/453.a6a97343.chunk.js.map"
+    "main.css": "/migramatch/static/css/main.e6c13ad2.css",
+    "main.js": "/migramatch/static/js/main.5b094f98.js",
+    "static/js/453.a6a97343.chunk.js": "/migramatch/static/js/453.a6a97343.chunk.js",
+    "index.html": "/migramatch/index.html",
+    "main.e6c13ad2.css.map": "/migramatch/static/css/main.e6c13ad2.css.map",
+    "main.5b094f98.js.map": "/migramatch/static/js/main.5b094f98.js.map",
+    "453.a6a97343.chunk.js.map": "/migramatch/static/js/453.a6a97343.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.dc27cfae.js"
+    "static/js/main.5b094f98.js"
   ]
 }
