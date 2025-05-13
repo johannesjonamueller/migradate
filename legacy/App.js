@@ -141,11 +141,11 @@ const MigraMatch = () => {
       name: "Financial Projections",
       age: "€1.8M",
       images: [
-       process.env.PUBLIC_URL + "/images/revenue7.png"
+       process.env.PUBLIC_URL + "/images/financial2.png"
       ],
       bio: `Looking for €150K investment for a serious relationship 📈
 
-• Funding allocation: Platform €0K, Gov. integration €30K, GTM €40K, Team €20K 💰
+• Funding allocation: Platform €60K, Gov. integration €30K, GTM €40K, Team €20K 💰
 • Target growth: 40% quarterly after launch 📈
 • Series A trigger: 5,000 successful matches 🤝`,
       backgroundColor: "#e0f2f1"
