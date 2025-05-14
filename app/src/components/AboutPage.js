@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import TinderStyleCard from './TinderStyleCard';
 
 const AboutPage = () => {
   const [showMatch, setShowMatch] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const isMobile = screenWidth < 768;
   
   const aboutProfiles = [
-   
     {
       name: "Problem",
       age: "Critical Issues",
@@ -166,14 +174,14 @@ Breakdown:
       {/* Header */}
       <div style={{
         backgroundColor: 'white',
-        padding: '15px',
+        padding: isMobile ? '10px' : '15px',
         boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
         textAlign: 'center'
       }}>
         <h2 style={{
           margin: 0,
           color: '#0069b4',
-          fontSize: '24px',
+          fontSize: isMobile ? '20px' : '24px',
           fontWeight: 'bold'
         }}>
           MigraMatch Pitch Deck
@@ -181,7 +189,7 @@ Breakdown:
         <p style={{
           margin: '5px 0 0 0',
           color: '#666',
-          fontSize: '16px'
+          fontSize: isMobile ? '14px' : '16px'
         }}>
           Complete investor presentation - May 16, 2025
         </p>

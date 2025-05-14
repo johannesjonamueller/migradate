@@ -18,6 +18,17 @@ const TinderStyleCard = ({
   const [fullScreenImageUrl, setFullScreenImageUrl] = useState('');
   const imageIntervalRef = useRef(null);
 
+  // Get screen width for responsive design
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const isMobile = screenWidth < 768;
+
   // Filter profiles based on tag
   const filteredProfiles = filterTag 
     ? profiles.filter(profile => profile.industry === filterTag)
@@ -163,8 +174,10 @@ const TinderStyleCard = ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: '18px',
-        color: '#666'
+        fontSize: isMobile ? '16px' : '18px',
+        color: '#666',
+        padding: '20px',
+        textAlign: 'center'
       }}>
         No profiles match the selected filter.
       </div>
@@ -182,7 +195,7 @@ const TinderStyleCard = ({
       justifyContent: 'center', 
       alignItems: 'center',
       background: '#f0f2f5',
-      padding: '20px',
+      padding: isMobile ? '10px' : '20px',
       boxSizing: 'border-box',
       overflow: 'hidden'
     }}>
@@ -199,10 +212,11 @@ const TinderStyleCard = ({
         transition={{ duration: 0.3 }}
         style={{
           width: '100%',
-          maxWidth: '500px',
-          minHeight: '70vh',
+          maxWidth: isMobile ? '95vw' : '500px',
+          minHeight: isMobile ? '65vh' : '70vh',
+          height: 'auto',
           backgroundColor: 'white',
-          borderRadius: '15px',
+          borderRadius: isMobile ? '12px' : '15px',
           overflow: 'hidden',
           boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)',
           display: 'flex',
@@ -215,7 +229,7 @@ const TinderStyleCard = ({
         {/* Profile image carousel */}
         <div 
           style={{ 
-            height: '60%', 
+            height: isMobile ? '50%' : '60%', 
             position: 'relative',
             overflow: 'hidden'
           }}
@@ -266,20 +280,20 @@ const TinderStyleCard = ({
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'flex-start',
-                  padding: '0 15px',
+                  padding: isMobile ? '0 10px' : '0 15px',
                   zIndex: 4,
                   background: 'linear-gradient(to right, rgba(0,0,0,0.1), transparent)'
                 }}
               >
                 <div style={{
-                  width: '40px',
-                  height: '40px',
+                  width: isMobile ? '30px' : '40px',
+                  height: isMobile ? '30px' : '40px',
                   borderRadius: '50%',
                   backgroundColor: 'rgba(255, 255, 255, 0.8)',
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  fontSize: '20px',
+                  fontSize: isMobile ? '16px' : '20px',
                   boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
                   transition: 'all 0.2s ease'
                 }}>
@@ -299,20 +313,20 @@ const TinderStyleCard = ({
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'flex-end',
-                  padding: '0 15px',
+                  padding: isMobile ? '0 10px' : '0 15px',
                   zIndex: 4,
                   background: 'linear-gradient(to left, rgba(0,0,0,0.1), transparent)'
                 }}
               >
                 <div style={{
-                  width: '40px',
-                  height: '40px',
+                  width: isMobile ? '30px' : '40px',
+                  height: isMobile ? '30px' : '40px',
                   borderRadius: '50%',
                   backgroundColor: 'rgba(255, 255, 255, 0.8)',
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  fontSize: '20px',
+                  fontSize: isMobile ? '16px' : '20px',
                   boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
                   transition: 'all 0.2s ease'
                 }}>
@@ -338,8 +352,8 @@ const TinderStyleCard = ({
                 <div
                   key={index}
                   style={{
-                    width: '6px',
-                    height: '6px',
+                    width: isMobile ? '5px' : '6px',
+                    height: isMobile ? '5px' : '6px',
                     borderRadius: '50%',
                     backgroundColor: index === currentImageIndex ? 'white' : 'rgba(255, 255, 255, 0.5)',
                     transition: 'all 0.3s ease'
@@ -357,7 +371,7 @@ const TinderStyleCard = ({
             right: 0,
             height: '50%',
             background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%)',
-            padding: '20px',
+            padding: isMobile ? '15px' : '20px',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'flex-end',
@@ -366,12 +380,21 @@ const TinderStyleCard = ({
             <div style={{
               display: 'flex',
               alignItems: 'flex-end',
-              gap: '10px'
+              gap: isMobile ? '8px' : '10px'
             }}>
-              <h2 style={{ color: 'white', margin: 0, fontSize: '28px', fontWeight: 'bold' }}>
+              <h2 style={{ 
+                color: 'white', 
+                margin: 0, 
+                fontSize: isMobile ? '22px' : '28px', 
+                fontWeight: 'bold' 
+              }}>
                 {currentProfile.name}
               </h2>
-              <span style={{ color: 'white', fontSize: '24px', marginBottom: '4px' }}>
+              <span style={{ 
+                color: 'white', 
+                fontSize: isMobile ? '18px' : '24px', 
+                marginBottom: '4px' 
+              }}>
                 , {currentProfile.age}
               </span>
             </div>
@@ -380,11 +403,11 @@ const TinderStyleCard = ({
             {showTags && currentProfile.industry && (
               <div style={{
                 display: 'inline-block',
-                marginTop: '10px',
-                padding: '4px 12px',
+                marginTop: '8px',
+                padding: '3px 10px',
                 backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                borderRadius: '15px',
-                fontSize: '14px',
+                borderRadius: '12px',
+                fontSize: isMobile ? '12px' : '14px',
                 fontWeight: 'bold',
                 color: '#333',
                 alignSelf: 'flex-start'
@@ -397,15 +420,15 @@ const TinderStyleCard = ({
         
         {/* Profile bio */}
         <div style={{ 
-          padding: '20px', 
+          padding: isMobile ? '15px' : '20px', 
           flex: 1, 
           overflowY: 'auto',
           backgroundColor: currentProfile.backgroundColor || 'white',
           background: `linear-gradient(to bottom, ${currentProfile.backgroundColor || 'white'}, white)`
         }}>
           <p style={{
-            fontSize: '18px',
-            lineHeight: '1.5',
+            fontSize: isMobile ? '14px' : '18px',
+            lineHeight: isMobile ? '1.4' : '1.5',
             margin: 0,
             whiteSpace: 'pre-line',
             color: '#333'
@@ -416,14 +439,14 @@ const TinderStyleCard = ({
           {/* Skills Section */}
           {currentProfile.skills && (
             <div style={{
-              marginTop: '15px',
-              padding: '15px',
+              marginTop: isMobile ? '12px' : '15px',
+              padding: isMobile ? '12px' : '15px',
               backgroundColor: 'rgba(255, 255, 255, 0.9)',
-              borderRadius: '10px'
+              borderRadius: '8px'
             }}>
               <h4 style={{
-                margin: '0 0 12px 0',
-                fontSize: '16px',
+                margin: '0 0 10px 0',
+                fontSize: isMobile ? '14px' : '16px',
                 color: '#333',
                 fontWeight: 'bold'
               }}>
@@ -432,7 +455,7 @@ const TinderStyleCard = ({
               <div style={{
                 display: 'flex',
                 flexWrap: 'wrap',
-                gap: '8px'
+                gap: isMobile ? '6px' : '8px'
               }}>
                 {currentProfile.skills.map((skill, index) => {
                   // Define colors based on skill type and verification status
@@ -465,87 +488,55 @@ const TinderStyleCard = ({
                       initial={{ opacity: 0, scale: 0 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: index * 0.05 }}
-                      whileHover={{ scale: 1.1, zIndex: 10 }}
+                      whileHover={{ scale: 1.05, zIndex: 10 }}
                       whileTap={{ scale: 0.95 }}
                       style={{
                         position: 'relative',
-                        padding: '6px 12px',
+                        padding: isMobile ? '4px 8px' : '6px 12px',
                         backgroundColor: skillColors.bg,
                         color: skillColors.color,
-                        borderRadius: '15px',
-                        fontSize: '12px',
+                        borderRadius: '12px',
+                        fontSize: isMobile ? '10px' : '12px',
                         fontWeight: 'bold',
                         cursor: 'pointer',
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '4px',
+                        gap: '3px',
                         boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
                         border: skill.verified ? 'none' : '2px dashed #fff'
                       }}
-                      onHoverStart={() => {
-                        // Create tooltip effect
-                        const tooltip = document.createElement('div');
-                        tooltip.innerHTML = skill.details;
-                        tooltip.style.cssText = `
-                          position: absolute;
-                          top: -40px;
-                          left: 50%;
-                          transform: translateX(-50%);
-                          background: rgba(0,0,0,0.9);
-                          color: white;
-                          padding: 8px 12px;
-                          border-radius: 6px;
-                          font-size: 11px;
-                          white-space: nowrap;
-                          z-index: 1000;
-                          max-width: 200px;
-                          white-space: normal;
-                          text-align: center;
-                          pointer-events: none;
-                          box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-                        `;
-                        tooltip.id = `tooltip-${index}`;
-                        document.body.appendChild(tooltip);
-                      }}
-                      onHoverEnd={() => {
-                        const tooltip = document.getElementById(`tooltip-${index}`);
-                        if (tooltip) {
-                          document.body.removeChild(tooltip);
-                        }
-                      }}
                     >
                       {skill.verified && (
-                        <span style={{ fontSize: '10px' }}>✓</span>
+                        <span style={{ fontSize: isMobile ? '8px' : '10px' }}>✓</span>
                       )}
                       {!skill.verified && (
-                        <span style={{ fontSize: '10px' }}>⏳</span>
+                        <span style={{ fontSize: isMobile ? '8px' : '10px' }}>⏳</span>
                       )}
                       <span>{skill.name}</span>
                     </motion.div>
                   );
                 })}
               </div>
-              
             </div>
           )}
           
           {/* Additional profile information */}
           {(currentProfile.role || currentProfile.company || currentProfile.location) && (
             <div style={{
-              marginTop: '15px',
-              padding: '15px',
+              marginTop: isMobile ? '12px' : '15px',
+              padding: isMobile ? '12px' : '15px',
               backgroundColor: 'rgba(255, 255, 255, 0.8)',
-              borderRadius: '10px',
-              fontSize: '14px',
+              borderRadius: '8px',
+              fontSize: isMobile ? '12px' : '14px',
               color: '#555'
             }}>
               {currentProfile.role && (
-                <p style={{ margin: '0 0 5px 0' }}>
+                <p style={{ margin: '0 0 4px 0' }}>
                   <strong>Role:</strong> {currentProfile.role}
                 </p>
               )}
               {currentProfile.company && (
-                <p style={{ margin: '0 0 5px 0' }}>
+                <p style={{ margin: '0 0 4px 0' }}>
                   <strong>Company:</strong> {currentProfile.company}
                 </p>
               )}
@@ -563,16 +554,17 @@ const TinderStyleCard = ({
       <div style={{ 
         display: 'flex', 
         justifyContent: 'space-around', 
+        alignItems: 'center',
         width: '100%',
-        maxWidth: '500px',
-        padding: '20px 0'
+        maxWidth: isMobile ? '95vw' : '500px',
+        padding: isMobile ? '15px 0' : '20px 0'
       }}>
         <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           style={{
-            width: '60px',
-            height: '60px',
+            width: isMobile ? '45px' : '60px',
+            height: isMobile ? '45px' : '60px',
             borderRadius: '50%',
             border: 'none',
             backgroundColor: '#ffb7b7',
@@ -580,7 +572,7 @@ const TinderStyleCard = ({
             justifyContent: 'center',
             alignItems: 'center',
             cursor: 'pointer',
-            fontSize: '24px',
+            fontSize: isMobile ? '18px' : '24px',
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)'
           }}
           onClick={handleDislike}
@@ -589,11 +581,11 @@ const TinderStyleCard = ({
         </motion.button>
         
         <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           style={{
-            width: '50px',
-            height: '50px',
+            width: isMobile ? '35px' : '50px',
+            height: isMobile ? '35px' : '50px',
             borderRadius: '50%',
             border: 'none',
             backgroundColor: '#ffcf85',
@@ -601,7 +593,7 @@ const TinderStyleCard = ({
             justifyContent: 'center',
             alignItems: 'center',
             cursor: 'pointer',
-            fontSize: '20px',
+            fontSize: isMobile ? '16px' : '20px',
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)'
           }}
           onClick={handleRewind}
@@ -610,11 +602,11 @@ const TinderStyleCard = ({
         </motion.button>
         
         <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           style={{
-            width: '50px',
-            height: '50px',
+            width: isMobile ? '35px' : '50px',
+            height: isMobile ? '35px' : '50px',
             borderRadius: '50%',
             border: 'none',
             backgroundColor: '#90e0ef',
@@ -622,7 +614,7 @@ const TinderStyleCard = ({
             justifyContent: 'center',
             alignItems: 'center',
             cursor: 'pointer',
-            fontSize: '20px',
+            fontSize: isMobile ? '16px' : '20px',
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)'
           }}
           onClick={handleSuperLike}
@@ -631,11 +623,11 @@ const TinderStyleCard = ({
         </motion.button>
         
         <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           style={{
-            width: '50px',
-            height: '50px',
+            width: isMobile ? '35px' : '50px',
+            height: isMobile ? '35px' : '50px',
             borderRadius: '50%',
             border: 'none',
             backgroundColor: '#c77dff',
@@ -643,7 +635,7 @@ const TinderStyleCard = ({
             justifyContent: 'center',
             alignItems: 'center',
             cursor: 'pointer',
-            fontSize: '20px',
+            fontSize: isMobile ? '16px' : '20px',
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)'
           }}
           onClick={handleMessage}
@@ -652,11 +644,11 @@ const TinderStyleCard = ({
         </motion.button>
         
         <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           style={{
-            width: '60px',
-            height: '60px',
+            width: isMobile ? '45px' : '60px',
+            height: isMobile ? '45px' : '60px',
             borderRadius: '50%',
             border: 'none',
             backgroundColor: '#a7e8bd',
@@ -664,7 +656,7 @@ const TinderStyleCard = ({
             justifyContent: 'center',
             alignItems: 'center',
             cursor: 'pointer',
-            fontSize: '24px',
+            fontSize: isMobile ? '18px' : '24px',
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)'
           }}
           onClick={handleLike}
@@ -677,15 +669,15 @@ const TinderStyleCard = ({
       <div style={{
         display: 'flex',
         justifyContent: 'center',
-        gap: '4px',
-        marginTop: '10px'
+        gap: '3px',
+        marginTop: isMobile ? '5px' : '10px'
       }}>
         {filteredProfiles.map((_, index) => (
           <div
             key={index}
             style={{
-              width: '8px',
-              height: '8px',
+              width: isMobile ? '6px' : '8px',
+              height: isMobile ? '6px' : '8px',
               borderRadius: '50%',
               backgroundColor: index === currentProfileIndex ? '#0069b4' : '#ddd'
             }}
@@ -712,7 +704,8 @@ const TinderStyleCard = ({
             justifyContent: 'center',
             zIndex: 1000,
             color: 'white',
-            textAlign: 'center'
+            textAlign: 'center',
+            padding: '20px'
           }}
           onClick={() => setShowMatch(false)}
         >
@@ -727,10 +720,27 @@ const TinderStyleCard = ({
               repeatType: "loop" 
             }}
           >
-            <h1 style={{ fontSize: '3rem', marginBottom: '20px' }}>✨ IT'S A MATCH! ✨</h1>
+            <h1 style={{ 
+              fontSize: isMobile ? '2rem' : '3rem', 
+              marginBottom: '20px',
+              textAlign: 'center'
+            }}>
+              ✨ IT'S A MATCH! ✨
+            </h1>
           </motion.div>
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '40px' }}>You've found your perfect match!</h2>
-          <p style={{ fontSize: '1.2rem' }}>Tap anywhere to continue</p>
+          <h2 style={{ 
+            fontSize: isMobile ? '1.2rem' : '1.5rem', 
+            marginBottom: '40px',
+            textAlign: 'center'
+          }}>
+            You've found your perfect match!
+          </h2>
+          <p style={{ 
+            fontSize: isMobile ? '1rem' : '1.2rem',
+            textAlign: 'center'
+          }}>
+            Tap anywhere to continue
+          </p>
         </motion.div>
       )}
       
@@ -750,7 +760,7 @@ const TinderStyleCard = ({
               borderTopLeftRadius: '20px',
               borderTopRightRadius: '20px',
               boxShadow: '0 -5px 20px rgba(0, 0, 0, 0.2)',
-              padding: '20px',
+              padding: isMobile ? '15px' : '20px',
               zIndex: 1000,
               maxHeight: '80vh',
               overflowY: 'auto'
@@ -761,9 +771,9 @@ const TinderStyleCard = ({
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              marginBottom: '20px',
+              marginBottom: isMobile ? '15px' : '20px',
               borderBottom: '1px solid #eee',
-              paddingBottom: '15px'
+              paddingBottom: isMobile ? '10px' : '15px'
             }}>
               <div style={{
                 display: 'flex',
@@ -771,8 +781,8 @@ const TinderStyleCard = ({
                 gap: '10px'
               }}>
                 <div style={{
-                  width: '50px',
-                  height: '50px',
+                  width: isMobile ? '40px' : '50px',
+                  height: isMobile ? '40px' : '50px',
                   borderRadius: '50%',
                   overflow: 'hidden'
                 }}>
@@ -787,20 +797,31 @@ const TinderStyleCard = ({
                   />
                 </div>
                 <div>
-                  <h3 style={{ margin: 0, fontSize: '18px' }}>{currentProfile.name}</h3>
-                  <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>Active now</p>
+                  <h3 style={{ 
+                    margin: 0, 
+                    fontSize: isMobile ? '16px' : '18px' 
+                  }}>
+                    {currentProfile.name}
+                  </h3>
+                  <p style={{ 
+                    margin: 0, 
+                    fontSize: isMobile ? '12px' : '14px', 
+                    color: '#666' 
+                  }}>
+                    Active now
+                  </p>
                 </div>
               </div>
               <div style={{
                 display: 'flex',
-                gap: '15px'
+                gap: isMobile ? '10px' : '15px'
               }}>
                 <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   style={{
-                    width: '40px',
-                    height: '40px',
+                    width: isMobile ? '35px' : '40px',
+                    height: isMobile ? '35px' : '40px',
                     borderRadius: '50%',
                     border: 'none',
                     backgroundColor: '#f0f2f5',
@@ -808,17 +829,17 @@ const TinderStyleCard = ({
                     justifyContent: 'center',
                     alignItems: 'center',
                     cursor: 'pointer',
-                    fontSize: '20px'
+                    fontSize: isMobile ? '16px' : '20px'
                   }}
                 >
                   📞
                 </motion.button>
                 <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   style={{
-                    width: '40px',
-                    height: '40px',
+                    width: isMobile ? '35px' : '40px',
+                    height: isMobile ? '35px' : '40px',
                     borderRadius: '50%',
                     border: 'none',
                     backgroundColor: '#f0f2f5',
@@ -826,17 +847,17 @@ const TinderStyleCard = ({
                     justifyContent: 'center',
                     alignItems: 'center',
                     cursor: 'pointer',
-                    fontSize: '20px'
+                    fontSize: isMobile ? '16px' : '20px'
                   }}
                 >
                   📹
                 </motion.button>
                 <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   style={{
-                    width: '40px',
-                    height: '40px',
+                    width: isMobile ? '35px' : '40px',
+                    height: isMobile ? '35px' : '40px',
                     borderRadius: '50%',
                     border: 'none',
                     backgroundColor: '#f0f2f5',
@@ -844,7 +865,7 @@ const TinderStyleCard = ({
                     justifyContent: 'center',
                     alignItems: 'center',
                     cursor: 'pointer',
-                    fontSize: '20px'
+                    fontSize: isMobile ? '16px' : '20px'
                   }}
                   onClick={() => setShowMessagePopup(false)}
                 >
@@ -855,7 +876,7 @@ const TinderStyleCard = ({
             
             {/* Messages */}
             <div style={{
-              marginBottom: '20px'
+              marginBottom: isMobile ? '15px' : '20px'
             }}>
               <div style={{
                 display: 'flex',
@@ -864,11 +885,16 @@ const TinderStyleCard = ({
                 <div style={{
                   maxWidth: '80%',
                   backgroundColor: '#f0f2f5',
-                  padding: '12px 15px',
-                  borderRadius: '18px',
+                  padding: isMobile ? '10px 12px' : '12px 15px',
+                  borderRadius: '15px',
                   marginRight: 'auto'
                 }}>
-                  <p style={{ margin: 0 }}>Hi there, we have a good feeling to be matching. We would like to know you more detailed.</p>
+                  <p style={{ 
+                    margin: 0,
+                    fontSize: isMobile ? '14px' : '16px'
+                  }}>
+                    Hi there, what a great match. Looking forward to working together.
+                  </p>
                 </div>
               </div>
             </div>
@@ -884,19 +910,19 @@ const TinderStyleCard = ({
                 placeholder="Type a message..."
                 style={{
                   flex: 1,
-                  padding: '12px 15px',
-                  borderRadius: '20px',
+                  padding: isMobile ? '10px 12px' : '12px 15px',
+                  borderRadius: '18px',
                   border: '1px solid #ddd',
-                  fontSize: '16px',
+                  fontSize: isMobile ? '14px' : '16px',
                   outline: 'none'
                 }}
               />
               <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 style={{
-                  width: '40px',
-                  height: '40px',
+                  width: isMobile ? '35px' : '40px',
+                  height: isMobile ? '35px' : '40px',
                   borderRadius: '50%',
                   border: 'none',
                   backgroundColor: '#0069b4',
@@ -905,7 +931,7 @@ const TinderStyleCard = ({
                   justifyContent: 'center',
                   alignItems: 'center',
                   cursor: 'pointer',
-                  fontSize: '20px'
+                  fontSize: isMobile ? '16px' : '20px'
                 }}
               >
                 ↗️
@@ -960,21 +986,21 @@ const TinderStyleCard = ({
                 position: 'absolute',
                 top: '20px',
                 right: '20px',
-                width: '50px',
-                height: '50px',
+                width: isMobile ? '40px' : '50px',
+                height: isMobile ? '40px' : '50px',
                 borderRadius: '50%',
                 border: 'none',
                 backgroundColor: 'rgba(255, 255, 255, 0.9)',
                 color: '#333',
-                fontSize: '24px',
+                fontSize: isMobile ? '20px' : '24px',
                 cursor: 'pointer',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
                 zIndex: 2001
               }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={(e) => {
                 e.stopPropagation();
                 setShowFullScreenImage(false);

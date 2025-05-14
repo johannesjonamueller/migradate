@@ -6,7 +6,6 @@ import TeamPage from './components/TeamPage';
 import AboutPage from './components/AboutPage';
 import GovernmentPage from './components/GovernmentPage';
 
-
 const MigraMatch = () => {
   const [currentPage, setCurrentPage] = useState('start');
   const [showStartPage, setShowStartPage] = useState(true);
@@ -25,7 +24,7 @@ const MigraMatch = () => {
         justifyContent: 'center', 
         alignItems: 'center',
         background: 'white',
-        padding: '20px',
+        padding: '15px',
         color: '#333',
         textAlign: 'center',
         cursor: 'pointer',
@@ -39,7 +38,7 @@ const MigraMatch = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            maxWidth: '600px',
+            maxWidth: '95%',
             width: '100%'
           }}
         >
@@ -47,152 +46,65 @@ const MigraMatch = () => {
           <motion.div
             animate={{ scale: [1, 1.05, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
-            style={{ marginBottom: '20px' }}
+            style={{ marginBottom: '15px' }}
           >
             <img 
               src={process.env.PUBLIC_URL + "/images/migra.jpeg"}
               alt="MigraMatch Logo"
               style={{
-                width: '200px',
+                width: 'min(150px, 30vw)',
                 height: 'auto',
-                borderRadius: '15px',
-                boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
+                borderRadius: '12px',
+                boxShadow: '0 8px 20px rgba(0,0,0,0.1)'
               }}
             />
           </motion.div>
           
-          {/* App Name */}
-          <h1 style={{ 
-            fontSize: '48px', 
-            fontWeight: 'bold', 
-            margin: '0 0 20px 0',
-            color: '#0069b4',
-            textShadow: '0 2px 10px rgba(0,0,0,0.1)'
-          }}>
-            MigraMatch
-          </h1>
-          
           {/* Tagline */}
           <h2 style={{ 
-            fontSize: '24px', 
+            fontSize: 'min(20px, 5vw)', 
             fontWeight: 'normal', 
-            margin: '0 0 30px 0',
+            margin: '0 0 20px 0',
             color: '#666'
           }}>
-            The Global Skilled Worker Matching Platform
+            Human connection first, paper work later
           </h2>
           
           <p style={{
-            fontSize: '18px',
-            maxWidth: '500px',
-            lineHeight: 1.5,
-            margin: '0 0 40px 0',
+            fontSize: 'min(16px, 4vw)',
+            maxWidth: '90%',
+            lineHeight: 1.4,
+            margin: '0 0 25px 0',
             color: '#777'
           }}>
             Connecting international talent to German employers through human-centered matching
           </p>
           
-          {/* Founders */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            marginBottom: '30px',
-            width: '100%',
-            gap: '30px'
-          }}>
-            <div style={{ textAlign: 'center' }}>
-              <div style={{
-                width: '80px',
-                height: '80px',
-                borderRadius: '50%',
-                overflow: 'hidden',
-                margin: '0 auto 10px',
-                border: '3px solid #0069b4'
-              }}>
-                <img 
-                  src={process.env.PUBLIC_URL + "/images/nima.jpeg"} 
-                  alt="Nima" 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-              </div>
-              <p style={{ margin: '5px 0', fontWeight: 'bold' }}>Nima</p>
-              <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>Data Scientist</p>
-              <a 
-                href="https://github.com/nimathing2052" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                style={{ 
-                  fontSize: '12px', 
-                  color: '#0069b4', 
-                  textDecoration: 'none',
-                  display: 'inline-block',
-                  marginTop: '5px'
-                }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                GitHub 🔗
-              </a>
-            </div>
-            <div style={{ textAlign: 'center' }}>
-              <div style={{
-                width: '80px',
-                height: '80px',
-                borderRadius: '50%',
-                overflow: 'hidden',
-                margin: '0 auto 10px',
-                border: '3px solid #0069b4'
-              }}>
-                <img 
-                  src={process.env.PUBLIC_URL + "/images/johannes.jpg"} 
-                  alt="Johannes" 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-              </div>
-              <p style={{ margin: '5px 0', fontWeight: 'bold' }}>Johannes</p>
-              <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>GenAI Engineer & Policy Expert</p>
-              <a 
-                href="https://github.com/johannesjonamueller" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                style={{ 
-                  fontSize: '12px', 
-                  color: '#0069b4', 
-                  textDecoration: 'none',
-                  display: 'inline-block',
-                  marginTop: '5px'
-                }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                GitHub 🔗
-              </a>
-            </div>
-          </div>
-          
           {/* User Guide */}
           <motion.div
             style={{
               backgroundColor: '#f8f9fa',
-              borderRadius: '15px',
-              padding: '20px',
-              marginBottom: '20px',
-              maxWidth: '500px',
+              borderRadius: '12px',
+              padding: '15px',
+              marginBottom: '15px',
+              width: '90%',
               textAlign: 'left'
             }}
           >
             <h3 style={{ 
-              fontSize: '18px', 
-              marginBottom: '15px',
+              fontSize: 'min(16px, 4vw)', 
+              marginBottom: '12px',
               textAlign: 'center',
               color: '#0069b4'
             }}>
               📱 Navigation Guide
             </h3>
             
-            <div style={{ fontSize: '14px', lineHeight: '1.6', color: '#555' }}>
-              <p style={{ marginBottom: '15px' }}>
+            <div style={{ fontSize: 'min(13px, 3.5vw)', lineHeight: '1.5', color: '#555' }}>
+              <p style={{ marginBottom: '12px' }}>
                 <strong>Our Platform Sections:</strong>
               </p>
-              <ul style={{ paddingLeft: '20px', marginBottom: '15px' }}>
+              <ul style={{ paddingLeft: '15px', marginBottom: '12px' }}>
                 <li>👥 TALENT - Explore the talent </li>
                 <li>💼 JOBS - Browse company profiles </li>
                 <li>🏛️ GOV - Government integration dashboard</li>
@@ -200,106 +112,18 @@ const MigraMatch = () => {
                 <li>ℹ️ ABOUT - Learn more about us</li>
               </ul>
               
-              <div style={{ 
-                backgroundColor: '#e3f2fd',
-                borderRadius: '10px',
-                padding: '15px',
-                marginBottom: '15px'
-              }}>
-                <p style={{ margin: 0, fontSize: '13px', color: '#555' }}>
-                  <strong>Note:</strong> This is our pitch deck presented as a matching app interface - showcasing MigraMatch's concept through interactive navigation.
-                </p>
-              </div>
-              
-              <p style={{ fontSize: '13px', margin: 0, color: '#777' }}>
+              <p style={{ fontSize: 'min(12px, 3vw)', margin: 0, color: '#777' }}>
                 Click anywhere to enter the navigation zone!
               </p>
             </div>
           </motion.div>
-          
-          {/* QR Code */}
-          <div style={{
-            background: 'white',
-            padding: '15px',
-            borderRadius: '10px',
-            boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
-            marginBottom: '30px'
-          }}>
-            <img 
-              src={process.env.PUBLIC_URL + "/images/qr.png"}
-              alt="QR Code"
-              style={{
-                width: '150px',
-                height: '150px'
-              }}
-            />
-          </div>
-
-          {/* Course Information */}
-          <div style={{
-            backgroundColor: '#f8f9fa',
-            borderRadius: '15px',
-            padding: '20px',
-            maxWidth: '500px',
-            textAlign: 'center',
-            border: '1px solid #e9ecef'
-          }}>
-            <img 
-              src={process.env.PUBLIC_URL + "/images/hertie.png"}
-              alt="Hertie School Logo"
-              style={{
-                width: '120px',
-                height: 'auto',
-                marginBottom: '15px'
-              }}
-            />
-            <h3 style={{ 
-              fontSize: '16px', 
-              marginBottom: '10px',
-              color: '#0069b4'
-            }}>
-              Spring 2025 Project
-            </h3>
-            <p style={{
-              fontSize: '14px',
-              margin: '0 0 15px 0',
-              color: '#555',
-              fontWeight: 'bold'
-            }}>
-              Entrepreneurship, Tech & Public Policy:<br />
-              Founding and Scaling a Software Startup with Public Impact
-            </p>
-            <div style={{ fontSize: '13px', color: '#777' }}>
-              <p style={{ margin: '10px 0' }}>
-                <strong>Professors:</strong>
-              </p>
-              <p style={{ margin: '5px 0' }}>
-                <a 
-                  href="mailto:faruk.tuncer@polyteia.de" 
-                  style={{ color: '#0069b4', textDecoration: 'none' }}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  Faruk Tuncer
-                </a>
-              </p>
-              <p style={{ margin: '5px 0' }}>
-                <a 
-                  href="mailto:alexa.moeller@polyteia.de" 
-                  style={{ color: '#0069b4', textDecoration: 'none' }}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  Alexa Möller
-                </a>
-              </p>
-            </div>
-          </div>
 
           <motion.p
             animate={{ opacity: [0, 1, 0], y: [0, -10, 0] }}
             transition={{ duration: 2, repeat: Infinity, repeatDelay: 0.5 }}
             style={{
-              marginTop: '20px',
-              fontSize: '18px',
+              marginTop: '15px',
+              fontSize: 'min(16px, 4vw)',
               color: '#0069b4'
             }}
           >
@@ -312,7 +136,7 @@ const MigraMatch = () => {
 
   return (
     <div className="app" style={{ height: '100vh', overflow: 'hidden' }}>
-      {/* Navigation Bar */}
+      {/* Navigation Bar - Mobile Optimized */}
       <motion.nav 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -322,18 +146,19 @@ const MigraMatch = () => {
           left: 0,
           right: 0,
           backgroundColor: 'white',
-          boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
           zIndex: 1000,
-          padding: '10px 0'
+          padding: '8px 0',
+          borderBottom: '1px solid #e0e0e0'
         }}
       >
         <div style={{
           display: 'flex',
           justifyContent: 'space-around',
           alignItems: 'center',
-          maxWidth: '450px',
-          margin: '0 auto',
-          padding: '0 20px'
+          width: '100%',
+          padding: '0 10px',
+          maxWidth: '100vw'
         }}>
           {[
             { id: 'talent', label: 'JOBS', icon: '💼'  },
@@ -344,33 +169,37 @@ const MigraMatch = () => {
           ].map((item) => (
             <motion.button
               key={item.id}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => setCurrentPage(item.id)}
               style={{
                 background: currentPage === item.id ? '#0069b4' : 'transparent',
                 color: currentPage === item.id ? 'white' : '#333',
                 border: currentPage === item.id ? 'none' : '1px solid #ddd',
-                borderRadius: '8px',
-                padding: '8px 16px',
+                borderRadius: '6px',
+                padding: '6px 8px',
                 cursor: 'pointer',
-                fontSize: '14px',
+                fontSize: '11px',
                 fontWeight: 'bold',
                 display: 'flex',
+                flexDirection: 'column',
                 alignItems: 'center',
-                gap: '5px',
-                transition: 'all 0.3s ease'
+                gap: '2px',
+                transition: 'all 0.3s ease',
+                minWidth: '0',
+                flex: '1',
+                maxWidth: '60px'
               }}
             >
-              <span>{item.icon}</span>
-              <span>{item.label}</span>
+              <span style={{ fontSize: '14px' }}>{item.icon}</span>
+              <span style={{ fontSize: '9px', lineHeight: '1' }}>{item.label}</span>
             </motion.button>
           ))}
         </div>
       </motion.nav>
 
       {/* Page Content */}
-      <div style={{ marginTop: '80px', height: 'calc(100vh - 80px)' }}>
+      <div style={{ marginTop: '65px', height: 'calc(100vh - 65px)' }}>
         <AnimatePresence mode="wait">
           {currentPage === 'talent' && <TalentPage key="talent" />}
           {currentPage === 'jobs' && <JobsPage key="jobs" />}

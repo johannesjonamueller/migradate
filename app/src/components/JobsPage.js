@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import TinderStyleCard from './TinderStyleCard';
 import { jobProfiles } from '../data/jobProfiles';
@@ -6,6 +6,15 @@ import { jobProfiles } from '../data/jobProfiles';
 const JobsPage = () => {
   const [showMatch, setShowMatch] = useState(false);
   const [filterTag, setFilterTag] = useState(null);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const isMobile = screenWidth < 768;
 
   const handleMatch = () => {
     setShowMatch(true);
@@ -28,25 +37,25 @@ const JobsPage = () => {
       {/* Filter Bar */}
       <div style={{
         backgroundColor: 'white',
-        padding: '15px',
+        padding: isMobile ? '10px' : '15px',
         boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
         display: 'flex',
         justifyContent: 'center',
-        gap: '10px',
+        gap: isMobile ? '8px' : '10px',
         flexWrap: 'wrap'
       }}>
         <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
           onClick={() => setFilterTag(null)}
           style={{
-            padding: '8px 16px',
-            borderRadius: '20px',
+            padding: isMobile ? '6px 12px' : '8px 16px',
+            borderRadius: '15px',
             border: 'none',
             backgroundColor: filterTag === null ? '#0069b4' : '#f0f2f5',
             color: filterTag === null ? 'white' : '#333',
             cursor: 'pointer',
-            fontSize: '14px',
+            fontSize: isMobile ? '12px' : '14px',
             fontWeight: 'bold'
           }}
         >
@@ -56,17 +65,17 @@ const JobsPage = () => {
         {['IT', 'Health', 'Engineering'].map((industry) => (
           <motion.button
             key={industry}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             onClick={() => setFilterTag(industry)}
             style={{
-              padding: '8px 16px',
-              borderRadius: '20px',
+              padding: isMobile ? '6px 12px' : '8px 16px',
+              borderRadius: '15px',
               border: 'none',
               backgroundColor: filterTag === industry ? '#0069b4' : '#f0f2f5',
               color: filterTag === industry ? 'white' : '#333',
               cursor: 'pointer',
-              fontSize: '14px',
+              fontSize: isMobile ? '12px' : '14px',
               fontWeight: 'bold'
             }}
           >
