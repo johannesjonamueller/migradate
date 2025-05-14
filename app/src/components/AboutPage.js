@@ -171,29 +171,6 @@ Breakdown:
         flexDirection: 'column'
       }}
     >
-      {/* Header */}
-      <div style={{
-        backgroundColor: 'white',
-        padding: isMobile ? '10px' : '15px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-        textAlign: 'center'
-      }}>
-        <h2 style={{
-          margin: 0,
-          color: '#0069b4',
-          fontSize: isMobile ? '20px' : '24px',
-          fontWeight: 'bold'
-        }}>
-          MigraMatch Pitch Deck
-        </h2>
-        <p style={{
-          margin: '5px 0 0 0',
-          color: '#666',
-          fontSize: isMobile ? '14px' : '16px'
-        }}>
-          Complete investor presentation - May 16, 2025
-        </p>
-      </div>
 
       {/* Main Content */}
       <div style={{ flex: 1, overflow: 'hidden' }}>

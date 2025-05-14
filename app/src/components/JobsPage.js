@@ -59,7 +59,7 @@ const JobsPage = () => {
             fontWeight: 'bold'
           }}
         >
-          All Jobs
+          eyeryone 
         </motion.button>
         
         {['IT', 'Health', 'Engineering'].map((industry) => (

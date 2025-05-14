@@ -61,29 +61,7 @@ const TeamPage = () => {
         flexDirection: 'column'
       }}
     >
-      {/* Header */}
-      <div style={{
-        backgroundColor: 'white',
-        padding: '15px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-        textAlign: 'center'
-      }}>
-        <h2 style={{
-          margin: 0,
-          color: '#0069b4',
-          fontSize: '24px',
-          fontWeight: 'bold'
-        }}>
-          Meet The MigraMatch Team
-        </h2>
-        <p style={{
-          margin: '5px 0 0 0',
-          color: '#666',
-          fontSize: '16px'
-        }}>
-          The perfect blend of technical expertise and policy understanding
-        </p>
-      </div>
+      
 
       {/* Main Content */}
       <div style={{ flex: 1, overflow: 'hidden' }}>

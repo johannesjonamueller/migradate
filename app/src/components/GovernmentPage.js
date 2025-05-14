@@ -447,29 +447,7 @@ const GovernmentPage = () => {
         backgroundColor: '#f5f5f5'
       }}
     >
-      {/* Header */}
-      <div style={{
-        backgroundColor: 'white',
-        padding: '15px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-        textAlign: 'center'
-      }}>
-        <h2 style={{
-          margin: 0,
-          color: '#0069b4',
-          fontSize: '24px',
-          fontWeight: 'bold'
-        }}>
-          Government Integration Dashboard
-        </h2>
-        <p style={{
-          margin: '5px 0 0 0',
-          color: '#666',
-          fontSize: '16px'
-        }}>
-          Real-time monitoring & administrative burden reduction
-        </p>
-      </div>
+     
 
       {/* Tab Navigation */}
       <div style={{
@@ -483,9 +461,9 @@ const GovernmentPage = () => {
       }}>
         {[
           { id: 'dashboard', label: 'Dashboard', icon: '📊' },
-          { id: 'integrations', label: 'Integrations', icon: '🔗' },
-          { id: 'applications', label: 'Applications', icon: '📝' },
-          { id: 'metrics', label: 'Impact Metrics', icon: '📈' }
+          { id: 'integrations', label: 'Connect', icon: '🔗' },
+          { id: 'applications', label: 'Apps', icon: '📝' },
+          { id: 'metrics', label: 'Impact', icon: '📈' }
         ].map((tab) => (
           <motion.button
             key={tab.id}
