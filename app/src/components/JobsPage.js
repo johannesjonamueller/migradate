@@ -59,32 +59,7 @@ const JobsPage = () => {
           padding: isMobile ? '10px' : '20px'
         }}
       >
-        {/* Header */}
-        <div style={{
-          backgroundColor: 'white',
-          padding: isMobile ? '12px' : '20px',
-          borderRadius: isMobile ? '10px' : '15px',
-          marginBottom: isMobile ? '12px' : '20px',
-          textAlign: 'center',
-          boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
-        }}>
-          <h2 style={{
-            margin: 0,
-            color: '#0069b4',
-            fontSize: isMobile ? '18px' : '24px',
-            fontWeight: 'bold',
-            marginBottom: isMobile ? '4px' : '8px'
-          }}>
-            💼 Browse Talent
-          </h2>
-          <p style={{
-            margin: 0,
-            color: '#666',
-            fontSize: isMobile ? '12px' : '16px'
-          }}>
-            Select your preferred industry to get started
-          </p>
-        </div>
+        
 
         {/* Industry Filter */}
         <div style={{
