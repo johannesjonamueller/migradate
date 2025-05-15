@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/migramatch/static/css/main.e6c13ad2.css",
-    "main.js": "/migramatch/static/js/main.c37cd752.js",
+    "main.js": "/migramatch/static/js/main.2dbc04e5.js",
     "static/js/453.a6a97343.chunk.js": "/migramatch/static/js/453.a6a97343.chunk.js",
     "index.html": "/migramatch/index.html",
     "main.e6c13ad2.css.map": "/migramatch/static/css/main.e6c13ad2.css.map",
-    "main.c37cd752.js.map": "/migramatch/static/js/main.c37cd752.js.map",
+    "main.2dbc04e5.js.map": "/migramatch/static/js/main.2dbc04e5.js.map",
     "453.a6a97343.chunk.js.map": "/migramatch/static/js/453.a6a97343.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.c37cd752.js"
+    "static/js/main.2dbc04e5.js"
   ]
 }
