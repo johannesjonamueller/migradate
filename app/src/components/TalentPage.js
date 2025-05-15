@@ -112,7 +112,32 @@ const TalentPage = () => {
           padding: isMobile ? '15px' : '20px'
         }}
       >
-       
+        {/* Header */}
+        <div style={{
+          backgroundColor: 'white',
+          padding: isMobile ? '15px' : '20px',
+          borderRadius: '15px',
+          marginBottom: '20px',
+          textAlign: 'center',
+          boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
+        }}>
+          <h2 style={{
+            margin: 0,
+            color: '#0069b4',
+            fontSize: isMobile ? '20px' : '24px',
+            fontWeight: 'bold',
+            marginBottom: '8px'
+          }}>
+            👥 Browse Companies
+          </h2>
+          <p style={{
+            margin: 0,
+            color: '#666',
+            fontSize: isMobile ? '14px' : '16px'
+          }}>
+            Filter companies by industry and language requirements
+          </p>
+        </div>
 
         {/* Filter Options */}
         <div style={{
