@@ -89,17 +89,17 @@ const JobsPage = () => {
         {/* Industry Filter */}
         <div style={{
           backgroundColor: 'white',
-          padding: isMobile ? '12px' : '20px',
-          borderRadius: isMobile ? '10px' : '15px',
+          padding: isMobile ? '8px' : '20px',
+          borderRadius: isMobile ? '8px' : '15px',
           boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
           flex: 1,
           display: 'flex',
           flexDirection: 'column'
         }}>
           <h3 style={{
-            margin: '0 0 15px 0',
+            margin: '0 0 10px 0',
             color: '#333',
-            fontSize: isMobile ? '16px' : '20px',
+            fontSize: isMobile ? '14px' : '20px',
             fontWeight: 'bold',
             textAlign: 'center'
           }}>
@@ -107,8 +107,8 @@ const JobsPage = () => {
           </h3>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))',
-            gap: isMobile ? '10px' : '15px',
+            gridTemplateColumns: isMobile ? 'repeat(3, 1fr)' : 'repeat(auto-fit, minmax(100px, 1fr))',
+            gap: isMobile ? '6px' : '15px',
             flex: 1,
             alignContent: 'center'
           }}>
@@ -119,13 +119,13 @@ const JobsPage = () => {
                 whileTap={{ scale: 0.98 }}
                 onClick={() => handleFilterSelect('industry', industry)}
                 style={{
-                  padding: isMobile ? '15px 20px' : '25px 30px',
-                  borderRadius: isMobile ? '10px' : '15px',
+                  padding: isMobile ? '10px 8px' : '25px 30px',
+                  borderRadius: isMobile ? '8px' : '15px',
                   border: filters.industry === industry ? 'none' : '2px solid #e0e0e0',
                   backgroundColor: filters.industry === industry ? '#0069b4' : 'white',
                   color: filters.industry === industry ? 'white' : '#333',
                   cursor: 'pointer',
-                  fontSize: isMobile ? '14px' : '18px',
+                  fontSize: isMobile ? '11px' : '18px',
                   fontWeight: 'bold',
                   transition: 'all 0.3s ease',
                   boxShadow: filters.industry === industry ? '0 4px 12px rgba(0,105,180,0.3)' : '0 2px 8px rgba(0,0,0,0.1)'

@@ -149,22 +149,22 @@ const TalentPage = () => {
           {/* Industry Filter */}
           <div style={{
             backgroundColor: 'white',
-            padding: isMobile ? '10px' : '20px',
-            borderRadius: isMobile ? '10px' : '15px',
+            padding: isMobile ? '8px' : '20px',
+            borderRadius: isMobile ? '8px' : '15px',
             boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
           }}>
             <h3 style={{
-              margin: '0 0 8px 0',
+              margin: '0 0 6px 0',
               color: '#333',
-              fontSize: isMobile ? '14px' : '18px',
+              fontSize: isMobile ? '12px' : '18px',
               fontWeight: 'bold'
             }}>
               🏢 Industry
             </h3>
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(90px, 1fr))',
-              gap: isMobile ? '6px' : '10px'
+              gridTemplateColumns: isMobile ? 'repeat(3, 1fr)' : 'repeat(auto-fit, minmax(90px, 1fr))',
+              gap: isMobile ? '4px' : '10px'
             }}>
               {['IT', 'Health', 'Engineering'].map((industry) => (
                 <motion.button
@@ -173,13 +173,13 @@ const TalentPage = () => {
                   whileTap={{ scale: 0.98 }}
                   onClick={() => handleFilterSelect('industry', industry)}
                   style={{
-                    padding: isMobile ? '6px 10px' : '12px 18px',
-                    borderRadius: isMobile ? '6px' : '10px',
-                    border: filters.industry === industry ? 'none' : '2px solid #e0e0e0',
+                    padding: isMobile ? '4px 6px' : '12px 18px',
+                    borderRadius: isMobile ? '5px' : '10px',
+                    border: filters.industry === industry ? 'none' : '1px solid #e0e0e0',
                     backgroundColor: filters.industry === industry ? '#0069b4' : 'white',
                     color: filters.industry === industry ? 'white' : '#333',
                     cursor: 'pointer',
-                    fontSize: isMobile ? '12px' : '16px',
+                    fontSize: isMobile ? '10px' : '16px',
                     fontWeight: 'bold',
                     transition: 'all 0.3s ease'
                   }}
