@@ -144,27 +144,27 @@ const TalentPage = () => {
           flex: 1,
           display: 'flex',
           flexDirection: 'column',
-          gap: '20px'
+          gap: isMobile ? '12px' : '20px'
         }}>
           {/* Industry Filter */}
           <div style={{
             backgroundColor: 'white',
-            padding: isMobile ? '15px' : '20px',
-            borderRadius: '15px',
+            padding: isMobile ? '10px' : '20px',
+            borderRadius: isMobile ? '10px' : '15px',
             boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
           }}>
             <h3 style={{
-              margin: '0 0 15px 0',
+              margin: '0 0 8px 0',
               color: '#333',
-              fontSize: isMobile ? '16px' : '18px',
+              fontSize: isMobile ? '14px' : '18px',
               fontWeight: 'bold'
             }}>
               🏢 Industry
             </h3>
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
-              gap: '10px'
+              gridTemplateColumns: 'repeat(auto-fit, minmax(90px, 1fr))',
+              gap: isMobile ? '6px' : '10px'
             }}>
               {['IT', 'Health', 'Engineering'].map((industry) => (
                 <motion.button
@@ -173,13 +173,13 @@ const TalentPage = () => {
                   whileTap={{ scale: 0.98 }}
                   onClick={() => handleFilterSelect('industry', industry)}
                   style={{
-                    padding: isMobile ? '10px 15px' : '12px 18px',
-                    borderRadius: '10px',
+                    padding: isMobile ? '6px 10px' : '12px 18px',
+                    borderRadius: isMobile ? '6px' : '10px',
                     border: filters.industry === industry ? 'none' : '2px solid #e0e0e0',
                     backgroundColor: filters.industry === industry ? '#0069b4' : 'white',
                     color: filters.industry === industry ? 'white' : '#333',
                     cursor: 'pointer',
-                    fontSize: isMobile ? '14px' : '16px',
+                    fontSize: isMobile ? '12px' : '16px',
                     fontWeight: 'bold',
                     transition: 'all 0.3s ease'
                   }}
@@ -190,120 +190,210 @@ const TalentPage = () => {
             </div>
           </div>
 
-          {/* German Level Filter */}
-          <div style={{
-            backgroundColor: 'white',
-            padding: isMobile ? '15px' : '20px',
-            borderRadius: '15px',
-            boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
-          }}>
-            <h3 style={{
-              margin: '0 0 10px 0',
-              color: '#333',
-              fontSize: isMobile ? '16px' : '18px',
-              fontWeight: 'bold'
-            }}>
-              🇩🇪 My German Level
-            </h3>
-            <p style={{
-              margin: '0 0 15px 0',
-              color: '#666',
-              fontSize: isMobile ? '12px' : '14px'
-            }}>
-              Shows companies requiring your level or lower
-            </p>
+          {/* Language Filters Combined for Mobile */}
+          {isMobile ? (
             <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(60px, 1fr))',
-              gap: '8px'
+              backgroundColor: 'white',
+              padding: '10px',
+              borderRadius: '10px',
+              boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
             }}>
-              {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((level) => (
-                <motion.button
-                  key={level}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => handleFilterSelect('germanLevel', level)}
-                  style={{
-                    padding: isMobile ? '8px 12px' : '10px 15px',
-                    borderRadius: '8px',
-                    border: filters.germanLevel === level ? 'none' : '2px solid #e0e0e0',
-                    backgroundColor: filters.germanLevel === level ? '#0069b4' : 'white',
-                    color: filters.germanLevel === level ? 'white' : '#333',
-                    cursor: 'pointer',
-                    fontSize: isMobile ? '13px' : '15px',
-                    fontWeight: 'bold',
-                    transition: 'all 0.3s ease'
-                  }}
-                >
-                  {level}
-                </motion.button>
-              ))}
-            </div>
-          </div>
+              {/* German Level */}
+              <div style={{ marginBottom: '10px' }}>
+                <h3 style={{
+                  margin: '0 0 6px 0',
+                  color: '#333',
+                  fontSize: '14px',
+                  fontWeight: 'bold'
+                }}>
+                  🇩🇪 German Level
+                </h3>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(6, 1fr)',
+                  gap: '4px'
+                }}>
+                  {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((level) => (
+                    <motion.button
+                      key={level}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => handleFilterSelect('germanLevel', level)}
+                      style={{
+                        padding: '6px 4px',
+                        borderRadius: '6px',
+                        border: filters.germanLevel === level ? 'none' : '1px solid #e0e0e0',
+                        backgroundColor: filters.germanLevel === level ? '#0069b4' : 'white',
+                        color: filters.germanLevel === level ? 'white' : '#333',
+                        cursor: 'pointer',
+                        fontSize: '11px',
+                        fontWeight: 'bold',
+                        transition: 'all 0.3s ease'
+                      }}
+                    >
+                      {level}
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
 
-          {/* English Level Filter */}
-          <div style={{
-            backgroundColor: 'white',
-            padding: isMobile ? '15px' : '20px',
-            borderRadius: '15px',
-            boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
-          }}>
-            <h3 style={{
-              margin: '0 0 10px 0',
-              color: '#333',
-              fontSize: isMobile ? '16px' : '18px',
-              fontWeight: 'bold'
-            }}>
-              🇬🇧 My English Level
-            </h3>
-            <p style={{
-              margin: '0 0 15px 0',
-              color: '#666',
-              fontSize: isMobile ? '12px' : '14px'
-            }}>
-              Shows companies requiring your level or lower
-            </p>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(60px, 1fr))',
-              gap: '8px'
-            }}>
-              {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((level) => (
-                <motion.button
-                  key={level}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => handleFilterSelect('englishLevel', level)}
-                  style={{
-                    padding: isMobile ? '8px 12px' : '10px 15px',
-                    borderRadius: '8px',
-                    border: filters.englishLevel === level ? 'none' : '2px solid #e0e0e0',
-                    backgroundColor: filters.englishLevel === level ? '#0069b4' : 'white',
-                    color: filters.englishLevel === level ? 'white' : '#333',
-                    cursor: 'pointer',
-                    fontSize: isMobile ? '13px' : '15px',
-                    fontWeight: 'bold',
-                    transition: 'all 0.3s ease'
-                  }}
-                >
-                  {level}
-                </motion.button>
-              ))}
+              {/* English Level */}
+              <div>
+                <h3 style={{
+                  margin: '0 0 6px 0',
+                  color: '#333',
+                  fontSize: '14px',
+                  fontWeight: 'bold'
+                }}>
+                  🇬🇧 English Level
+                </h3>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(6, 1fr)',
+                  gap: '4px'
+                }}>
+                  {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((level) => (
+                    <motion.button
+                      key={level}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => handleFilterSelect('englishLevel', level)}
+                      style={{
+                        padding: '6px 4px',
+                        borderRadius: '6px',
+                        border: filters.englishLevel === level ? 'none' : '1px solid #e0e0e0',
+                        backgroundColor: filters.englishLevel === level ? '#0069b4' : 'white',
+                        color: filters.englishLevel === level ? 'white' : '#333',
+                        cursor: 'pointer',
+                        fontSize: '11px',
+                        fontWeight: 'bold',
+                        transition: 'all 0.3s ease'
+                      }}
+                    >
+                      {level}
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
+          ) : (
+            <>
+              {/* German Level Filter */}
+              <div style={{
+                backgroundColor: 'white',
+                padding: '20px',
+                borderRadius: '15px',
+                boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
+              }}>
+                <h3 style={{
+                  margin: '0 0 10px 0',
+                  color: '#333',
+                  fontSize: '18px',
+                  fontWeight: 'bold'
+                }}>
+                  🇩🇪 My German Level
+                </h3>
+                <p style={{
+                  margin: '0 0 15px 0',
+                  color: '#666',
+                  fontSize: '14px'
+                }}>
+                  Shows companies requiring your level or lower
+                </p>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(60px, 1fr))',
+                  gap: '8px'
+                }}>
+                  {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((level) => (
+                    <motion.button
+                      key={level}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => handleFilterSelect('germanLevel', level)}
+                      style={{
+                        padding: '10px 15px',
+                        borderRadius: '8px',
+                        border: filters.germanLevel === level ? 'none' : '2px solid #e0e0e0',
+                        backgroundColor: filters.germanLevel === level ? '#0069b4' : 'white',
+                        color: filters.germanLevel === level ? 'white' : '#333',
+                        cursor: 'pointer',
+                        fontSize: '15px',
+                        fontWeight: 'bold',
+                        transition: 'all 0.3s ease'
+                      }}
+                    >
+                      {level}
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
+
+              {/* English Level Filter */}
+              <div style={{
+                backgroundColor: 'white',
+                padding: '20px',
+                borderRadius: '15px',
+                boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
+              }}>
+                <h3 style={{
+                  margin: '0 0 10px 0',
+                  color: '#333',
+                  fontSize: '18px',
+                  fontWeight: 'bold'
+                }}>
+                  🇬🇧 My English Level
+                </h3>
+                <p style={{
+                  margin: '0 0 15px 0',
+                  color: '#666',
+                  fontSize: '14px'
+                }}>
+                  Shows companies requiring your level or lower
+                </p>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(60px, 1fr))',
+                  gap: '8px'
+                }}>
+                  {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((level) => (
+                    <motion.button
+                      key={level}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => handleFilterSelect('englishLevel', level)}
+                      style={{
+                        padding: '10px 15px',
+                        borderRadius: '8px',
+                        border: filters.englishLevel === level ? 'none' : '2px solid #e0e0e0',
+                        backgroundColor: filters.englishLevel === level ? '#0069b4' : 'white',
+                        color: filters.englishLevel === level ? 'white' : '#333',
+                        cursor: 'pointer',
+                        fontSize: '15px',
+                        fontWeight: 'bold',
+                        transition: 'all 0.3s ease'
+                      }}
+                    >
+                      {level}
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
 
           {/* Selected Filters Summary */}
           {(filters.industry || filters.germanLevel || filters.englishLevel) && (
             <div style={{
               backgroundColor: '#f0f9ff',
-              padding: isMobile ? '12px' : '15px',
-              borderRadius: '10px',
+              padding: isMobile ? '8px' : '15px',
+              borderRadius: isMobile ? '8px' : '10px',
               border: '2px solid #0069b4'
             }}>
               <h4 style={{
-                margin: '0 0 8px 0',
+                margin: '0 0 6px 0',
                 color: '#0069b4',
-                fontSize: isMobile ? '14px' : '16px',
+                fontSize: isMobile ? '12px' : '16px',
                 fontWeight: 'bold'
               }}>
                 Selected Filters:
@@ -311,15 +401,15 @@ const TalentPage = () => {
               <div style={{
                 display: 'flex',
                 flexWrap: 'wrap',
-                gap: '8px'
+                gap: isMobile ? '4px' : '8px'
               }}>
                 {filters.industry && (
                   <span style={{
                     backgroundColor: '#0069b4',
                     color: 'white',
-                    padding: '4px 12px',
+                    padding: isMobile ? '2px 8px' : '4px 12px',
                     borderRadius: '15px',
-                    fontSize: isMobile ? '12px' : '14px',
+                    fontSize: isMobile ? '10px' : '14px',
                     fontWeight: 'bold'
                   }}>
                     🏢 {filters.industry}
@@ -329,9 +419,9 @@ const TalentPage = () => {
                   <span style={{
                     backgroundColor: '#0069b4',
                     color: 'white',
-                    padding: '4px 12px',
+                    padding: isMobile ? '2px 8px' : '4px 12px',
                     borderRadius: '15px',
-                    fontSize: isMobile ? '12px' : '14px',
+                    fontSize: isMobile ? '10px' : '14px',
                     fontWeight: 'bold'
                   }}>
                     🇩🇪 {filters.germanLevel}+
@@ -341,9 +431,9 @@ const TalentPage = () => {
                   <span style={{
                     backgroundColor: '#0069b4',
                     color: 'white',
-                    padding: '4px 12px',
+                    padding: isMobile ? '2px 8px' : '4px 12px',
                     borderRadius: '15px',
-                    fontSize: isMobile ? '12px' : '14px',
+                    fontSize: isMobile ? '10px' : '14px',
                     fontWeight: 'bold'
                   }}>
                     🇬🇧 {filters.englishLevel}+
@@ -361,15 +451,15 @@ const TalentPage = () => {
           onClick={handleApplyFilters}
           style={{
             width: '100%',
-            padding: isMobile ? '15px' : '18px',
-            borderRadius: '15px',
+            padding: isMobile ? '12px' : '18px',
+            borderRadius: isMobile ? '10px' : '15px',
             border: 'none',
             backgroundColor: '#0069b4',
             color: 'white',
-            fontSize: isMobile ? '16px' : '18px',
+            fontSize: isMobile ? '14px' : '18px',
             fontWeight: 'bold',
             cursor: 'pointer',
-            marginTop: '20px',
+            marginTop: isMobile ? '12px' : '20px',
             boxShadow: '0 4px 12px rgba(0,105,180,0.3)'
           }}
         >
